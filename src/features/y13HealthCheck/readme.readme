@@ -1,0 +1,30 @@
+right, good stuff, you've done a localStorage and state reset
+you've got a feedback form without copying all of the same code again
+you've disabled the buttons and rechecked the previously checked buttons
+
+NEED TO:
+
+make the red / yellow boxes appear for correct / incorrect
+render the feedback list
+reconnect the logic that harvests the url for the identifier and anonymously generates one if not
+make sure the whole shebang flies with Netlify (for which you'll need to uncomment the original
+form html)
+
+notes:
+
+so I've added id to the state object for the healthCheck answers
+you could make an array of the Object keys
+iterate through that array, using the similar functionality of, if it's an array then use this, otherwise 
+use that and yeah, blah blah blah
+
+total mess
+you need to reaquaint yourself with how the function worked on the static site - recheckRadiosandCheckboxes
+can't see how it works
+
+it's all a bit of a mess, but I think it's gone in a good direction, you've got all the questions in one
+bit, you've created a new path for the feedback which the action can redirect to,
+you just need to get it to do all the same stuff as before
+
+add @babel/plugin-proposal-private-property-in-object to dependencies at some point
+
+AND GET THIS IN A GITHUB!!
