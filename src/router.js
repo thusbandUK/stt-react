@@ -5,10 +5,11 @@ import {
     createRoutesFromElements,
     Route,
   } from "react-router-dom";
-  import Landing from './Components/Landing/landing';
-  import Resources from './Components/Resources/resources';
-  import ResourceContainer from './Components/Resources/resourceContainer';
-  import Y13HealthCheckFeedback from './Components/Resources/y13HealthCheckFeedback';
+import Landing from './Components/Landing/landing';
+import Resources from './Components/Resources/resources';
+import ResourceContainer from './Components/Resources/resourceContainer';
+import Y13HealthCheckFeedback from './Components/Resources/y13HealthCheckFeedback';
+import Privacy from './Components/Privacy/privacy';
   
 //import ReactionsContainer from './components/reactionsContainer/reactionsContainer';
 //import Introduction from './components/introduction/Introduction';
@@ -21,6 +22,7 @@ import {
       
       <Route path="/" element={<App />} >
         <Route path="/" element={<Landing />} />
+        <Route path="/privacy/" element={<Privacy />} />
         <Route path="/resources/contents/" element={<Resources />} />             
           <Route path="/resources/:resource" element={<ResourceContainer />} /> 
           

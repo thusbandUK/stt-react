@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Footer(props){
 
@@ -21,7 +22,13 @@ return (
           <a class="nav-link" href="#" id="open_preferences_center">Cookies</a>
         </li>        
         <li class="nav-item">
-          <a class="nav-link" href="./privacy.html">Privacy</a>
+          <NavLink          
+                    to={"/Privacy/"}
+                    className="nav-link"                   
+                  >
+                  Privacy                
+          </NavLink>
+          {/*<a class="nav-link" href="./privacy.html">Privacy</a>*/}
         </li>
         {/*Linked In icon and link*/}
         <li class="nav-item">
