@@ -1,9 +1,8 @@
 things to do:
 
-add @babel/plugin-proposal-private-property-in-object to dependencies at some point
+add @babel/plugin-proposal-private-property-in-object to dependencies at some point - still needs addressing
 work through other error messages and warnings
-restyle the submit button at the bottom of the input / feedback Y13 health check pages
 reconnect the forms when the site is launched on Netlify
-create pages for privacy / cookies / etc.
+create pages for cookies and connect the React cookie banner
 create blog contents pages
 etc.

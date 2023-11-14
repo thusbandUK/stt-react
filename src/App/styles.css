@@ -40,22 +40,22 @@ body {
 
 /*navbar brand link configuration*/
 
-.navbar-brand {
+.navbar-brand, .navlink-button {
   color: var(--bs-navbar-brand-color) !important;
   text-decoration: none  !important;
 }
 
-.navbar-brand a:hover {
+.navbar-brand a:hover, .navlink-button a:hover {
   color: var(--bs-navbar-brand-color) !important;
   text-decoration: none  !important;
 }
 
-.navbar-brand a:active {
+.navbar-brand a:active, .navlink-button a:active {
   color: var(--bs-navbar-brand-color) !important;
   text-decoration: none  !important;
 }
 
-.navbar-brand a:visited {
+.navbar-brand a:visited, .navlink-button a:visited {
   font-style: normal !important;
 }
 

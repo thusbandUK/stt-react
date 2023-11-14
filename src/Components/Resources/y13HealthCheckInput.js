@@ -90,6 +90,7 @@ const onValueCheck = (event) => {
        <button type="submit" class="btn btn-lg btn-default" >
         <NavLink
         to={'/resources/y13-health-check-feedback'}
+        className="navlink-button"
         >
         Submit
         </NavLink></button>
