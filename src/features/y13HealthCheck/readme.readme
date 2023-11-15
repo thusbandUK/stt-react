@@ -1,8 +1,19 @@
 things to do:
 
+BLOG!
+
+1) modify all the components in resources so they can be used for the blog as well, links, container etc
+2) you need to use useParams in the container to read the url and render the appropriate contents
+3) rejig the blogData.json file to be an epic array of objects
+4) the blog contents needs to access the blogData.json, parse it, then map the array of blogs for the 
+content stuff, incl automatic link to pages
+5) blogPost.js (create / recycle from resources) renders the html using interleave
+
+
 add @babel/plugin-proposal-private-property-in-object to dependencies at some point - still needs addressing
 work through other error messages and warnings
 reconnect the forms when the site is launched on Netlify
 create pages for cookies and connect the React cookie banner
+connect analytics stuff
 create blog contents pages
 etc.
