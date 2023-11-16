@@ -10,7 +10,8 @@ import Resources from './Components/Resources/resources';
 import ResourceContainer from './Components/Resources/resourceContainer';
 import Y13HealthCheckFeedback from './Components/Resources/y13HealthCheckFeedback';
 import Privacy from './Components/Privacy/privacy';
-import Blog from './Components/blog/blog';
+import Blog from './Components/blog/blogs';
+import BlogContainer from './Components/blog/blogContainer';
   
 //import ReactionsContainer from './components/reactionsContainer/reactionsContainer';
 //import Introduction from './components/introduction/Introduction';
@@ -25,6 +26,8 @@ import Blog from './Components/blog/blog';
         <Route path="/" element={<Landing />} />
         <Route path="/privacy/" element={<Privacy />} />
         <Route path="/blog/" element={<Blog />} />
+          <Route path="/blog/:blogPost" element={<BlogContainer />} />
+        
         <Route path="/resources/contents/" element={<Resources />} />             
           <Route path="/resources/:resource" element={<ResourceContainer />} /> 
           
