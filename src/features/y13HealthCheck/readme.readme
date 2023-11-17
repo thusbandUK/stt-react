@@ -1,13 +1,13 @@
 things to do:
 
 BLOG!
-
-1) modify all the components in resources so they can be used for the blog as well, links, container etc
-2) you need to use useParams in the container to read the url and render the appropriate contents
-3) rejig the blogData.json file to be an epic array of objects
-4) the blog contents needs to access the blogData.json, parse it, then map the array of blogs for the 
-content stuff, incl automatic link to pages
-5) blogPost.js (create / recycle from resources) renders the html using interleave
+1) need to uninstall react-helmet and install react-helmet-async https://www.npmjs.com/package/react-helmet-async
+2) style the rendering of the blog contents in the container, you just need to import the section div and such
+3) add title and image to blog post 
+4) configure metadata via react-helmet
+5) add the data for the other blogs
+6) deploy to netlify, repoint domain etc
+7) merge interleave branch, create ReactHelmetAsync branch 
 
 
 add @babel/plugin-proposal-private-property-in-object to dependencies at some point - still needs addressing

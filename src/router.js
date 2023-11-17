@@ -8,7 +8,7 @@ import {
 import Landing from './Components/Landing/landing';
 import Resources from './Components/Resources/resources';
 import ResourceContainer from './Components/Resources/resourceContainer';
-import Y13HealthCheckFeedback from './Components/Resources/y13HealthCheckFeedback';
+import Y13HealthCheckFeedback from './features/y13HealthCheck/y13HealthCheckFeedback';
 import Privacy from './Components/Privacy/privacy';
 import Blog from './Components/blog/blogs';
 import BlogContainer from './Components/blog/blogContainer';

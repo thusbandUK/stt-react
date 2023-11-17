@@ -1,5 +1,5 @@
 import React from "react";
-import Y13HealthCheckInput from "./y13HealthCheckInput";
+import Y13HealthCheckInput from "../../features/y13HealthCheck/y13HealthCheckInput";
 
 function ResourceContainer(props){
 

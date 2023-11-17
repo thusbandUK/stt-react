@@ -23,11 +23,17 @@ code will need to be updated with some kind of logic tree that renders the objec
 */
 
     return (
-        <div>
-            <Interweave 
-            content={blogs.blogs[blogIndex].content}
+        
+            <div class="section">
+                <div class="text-box" >
+                  <h1 class="text-center text-wrap w-75 m-auto mt-0 fs-1 my-5">{blogs.blogs[blogIndex].blogTitle}
+                  </h1>
+                </div>
+                <img className="mb-5" src={blogs.blogs[blogIndex].imageLink} style={{maxWidth: "100%"}} alt={blogs.blogs[blogIndex].altText} ></img>
+                <Interweave 
+                content={blogs.blogs[blogIndex].content}
             
-            />
+                />
             
         </div>
 

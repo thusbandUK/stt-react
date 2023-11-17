@@ -4,7 +4,7 @@ import { disableChecksAndRadios,
          recheckSelectedAnswers,
          checkAnswers,
          renderForm
-        } from "../../features/y13HealthCheck/y13-health-check-submission";
+        } from "./y13-health-check-submission";
 import Y13HealthCheckQuestions from "./y13HealthCheckQuestions";
 
 function Y13HealthCheckFeedback(props){

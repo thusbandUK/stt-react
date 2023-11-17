@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAnswer, updateAnswer, reset, identifierCodeToState } from "../../features/y13HealthCheck/y13HealthCheckSlice";
-import { populateIdentifier, identifierObject } from "../../features/y13HealthCheck/y13-health-check-input-functions";
+import { selectAnswer, updateAnswer, reset, identifierCodeToState } from "./y13HealthCheckSlice";
+import { populateIdentifier, identifierObject } from "./y13-health-check-input-functions";
 import Y13HealthCheckQuestions from "./y13HealthCheckQuestions";
 import { NavLink } from "react-router-dom";
 
