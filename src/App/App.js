@@ -9,6 +9,7 @@ import Footer from '../Components/HeaderAndFooter/footer';
 import Landing from '../Components/Landing/landing';
 import { Outlet } from "react-router-dom";
 import ScrollToAnchor from '../hashScroll';
+import { HelmetProvider } from 'react-helmet-async';
 
 //import { Outlet } from "react-router-dom";
 //import Menu from '../features/menu/Menu';
@@ -26,6 +27,7 @@ function App() {
    
 
   return (
+    <HelmetProvider>
     <div className="App">
       <ScrollToAnchor />
       <Header 
@@ -36,6 +38,7 @@ function App() {
       
       <Footer />
     </div>
+    </HelmetProvider>
   );
 }
 

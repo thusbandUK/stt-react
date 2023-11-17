@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from 'react-router-dom';
 import blogs from './blogData.json';
 import { Interweave } from 'interweave';
+import { Helmet } from "react-helmet-async";
 
 function BlogContainer(props){
 
@@ -13,6 +14,7 @@ function BlogContainer(props){
         return x.hyperLink === urlSuffix;
     })
 
+    const blogData = blogs.blogs[blogIndex];
     console.log(blogs.blogs[blogIndex].content);
 
 
@@ -25,6 +27,19 @@ code will need to be updated with some kind of logic tree that renders the objec
     return (
         
             <div class="section">
+                <Helmet>
+                { /* Standard metadata tags */ }
+                  <title>{blogData.blogTitle}</title>
+                  <meta name='description' content={blogData.blogDescription} />
+                { /* End standard metadata tags */ }
+                { /* Facebook tags */ }
+                  <meta property="og:type" content="article" />
+                  <meta property="og:title" content={blogData.blogTitle} />
+                  <meta property="og:description" content={blogData.blogDescription} />
+                  <meta property="og:image" content={blogData.imageLink} />
+                  
+                { /* End Facebook tags */ } 
+                </Helmet>
                 <div class="text-box" >
                   <h1 class="text-center text-wrap w-75 m-auto mt-0 fs-1 my-5">{blogs.blogs[blogIndex].blogTitle}
                   </h1>
