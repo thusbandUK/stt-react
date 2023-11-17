@@ -10,6 +10,10 @@ import Landing from '../Components/Landing/landing';
 import { Outlet } from "react-router-dom";
 import ScrollToAnchor from '../hashScroll';
 import { HelmetProvider } from 'react-helmet-async';
+import { useParams, useLocation } from 'react-router-dom';
+
+//page tracking is for google analytics to follow what's afoot
+//import usePageTracking from './usePageTracking';
 
 //import { Outlet } from "react-router-dom";
 //import Menu from '../features/menu/Menu';
@@ -24,14 +28,14 @@ import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
 
-   
+  const pathName = useLocation().pathname;
 
   return (
     <HelmetProvider>
     <div className="App">
       <ScrollToAnchor />
       <Header 
-      
+      pathName={pathName}
       />
       <Outlet />
       {/*<Landing />*/}
