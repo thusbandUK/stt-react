@@ -10,3 +10,7 @@ BLOG!
 6) connect analytics stuff
 7) create blog contents pages
 8) deploy to netlify, repoint domain etc
+9) euch, you need to do various things to get SEO to work w netlify, not too much (hopefully), you need 
+https://prerender.io/pricing/ (which has a free version like netlify) and https://github.com/netlify/prerender 
+(when you build the back end you can configure it from there, see the react-helmet-async docs and freecodecamp
+expo)

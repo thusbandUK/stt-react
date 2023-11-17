@@ -70,8 +70,8 @@ const onValueCheck = (event) => {
     <div>
       
       {/*As in sister ...Feedback.js file, the below will want uncommenting when the site is launched on Netlify */}
-     {/*<form id="form" name="y13-health-check" method="POST" action="/resources/y13-health-check-submission.html" data-netlify="true" data-netlify-recaptcha="true" content-Type="application/x-www-form-urlencoded">*/}
-     <form id="form" name="y13-health-check" data-netlify="true" data-netlify-recaptcha="true" content-Type="application/x-www-form-urlencoded">
+     <form id="form" name="y13-health-check" method="POST" action="/resources/y13-health-check-submission.html" data-netlify="true" data-netlify-recaptcha="true" content-Type="application/x-www-form-urlencoded">
+     {/*<form id="form" name="y13-health-check" data-netlify="true" data-netlify-recaptcha="true" content-Type="application/x-www-form-urlencoded">*/}
       <div class="form-group my-1">
         
           <input type="hidden" class="form-control" id="identifier" placeholder="Identification code" name="identifier" />
@@ -86,8 +86,8 @@ const onValueCheck = (event) => {
        
        <div class="w-100" data-netlify-recaptcha="true"></div>
        {/*As in sister ...Feedback.js file, the below will want uncommenting when the site is launched on Netlify */}
-       {/*<button type="submit" class="btn btn-lg btn-default" value="form-submit">Submit</button>*/}
-       <button type="submit" class="btn btn-lg btn-default" >
+       <button type="submit" class="btn btn-lg btn-default" value="form-submit">Submit
+       {/*<button type="submit" class="btn btn-lg btn-default" >*/}
         <NavLink
         to={'/resources/y13-health-check-feedback'}
         className="navlink-button"
