@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
+import Link from "../HeaderAndFooter/Link";
 
 function ResourceLink(props){
 
@@ -16,8 +17,25 @@ function ResourceLink(props){
                   >                    
                 
         
+                    <Link 
+                    imageLink={props.imageLink}
+                    altText={props.altText}
+                    title={props.resourceTitle}
+                    description={props.resourceDescription}
+                    lastUpdated={props.lastUpdated}
+                    />
           
-            <div className="row g-0">        
+            
+            </NavLink>
+          
+        </div>
+    )
+}
+
+export default ResourceLink;
+
+/*
+<div className="row g-0">        
               <div className="col-md-4 d-flex">
                 <img src={props.imageLink} className="img-fluid rounded-start" alt={props.altText}></img>
               </div>      
@@ -31,10 +49,4 @@ function ResourceLink(props){
          
                </div>   
             </div>
-            </NavLink>
-          
-        </div>
-    )
-}
-
-export default ResourceLink;
+*/
