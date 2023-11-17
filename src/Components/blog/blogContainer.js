@@ -17,6 +17,10 @@ function BlogContainer(props){
     const blogData = blogs.blogs[blogIndex];
     console.log(blogs.blogs[blogIndex].content);
 
+    const style = {
+        backgroundColor: "var(--tan)"
+        
+    }
 
 
 /*
@@ -26,7 +30,12 @@ code will need to be updated with some kind of logic tree that renders the objec
 
     return (
         
-            <div class="section">
+            <div >
+                <div style={style} className="text-box d-flex flex-column" >
+                  <h1 className="text-center text-wrap w-75 m-auto fs-1 my-5">{blogs.blogs[blogIndex].blogTitle}
+                  </h1>
+                  <img className="mb-5 mx-auto" src={blogs.blogs[blogIndex].imageLink} style={{maxWidth: "100%"}} alt={blogs.blogs[blogIndex].altText} ></img>
+                </div>
                 <Helmet>
                 { /* Standard metadata tags */ }
                   <title>{blogData.blogTitle}</title>
@@ -40,16 +49,15 @@ code will need to be updated with some kind of logic tree that renders the objec
                   
                 { /* End Facebook tags */ } 
                 </Helmet>
-                <div class="text-box" >
-                  <h1 class="text-center text-wrap w-75 m-auto mt-0 fs-1 my-5">{blogs.blogs[blogIndex].blogTitle}
-                  </h1>
-                </div>
-                <img className="mb-5" src={blogs.blogs[blogIndex].imageLink} style={{maxWidth: "100%"}} alt={blogs.blogs[blogIndex].altText} ></img>
+
+                <div className="section">
+                
+                
                 <Interweave 
                 content={blogs.blogs[blogIndex].content}
             
                 />
-            
+            </div>
         </div>
 
     )

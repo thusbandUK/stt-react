@@ -1,19 +1,12 @@
 things to do:
 
 BLOG!
-1) need to uninstall react-helmet and install react-helmet-async https://www.npmjs.com/package/react-helmet-async
-2) style the rendering of the blog contents in the container, you just need to import the section div and such
-3) add title and image to blog post 
-4) configure metadata via react-helmet
-5) add the data for the other blogs
-6) deploy to netlify, repoint domain etc
-7) merge interleave branch, create ReactHelmetAsync branch 
 
-
-add @babel/plugin-proposal-private-property-in-object to dependencies at some point - still needs addressing
-work through other error messages and warnings
-reconnect the forms when the site is launched on Netlify
-create pages for cookies and connect the React cookie banner
-connect analytics stuff
-create blog contents pages
-etc.
+1) add the data for the other blogs
+2) add @babel/plugin-proposal-private-property-in-object to dependencies at some point - still needs addressing
+3) work through other error messages and warnings
+4) reconnect the forms when the site is launched on Netlify
+5) create pages for cookies and connect the React cookie banner
+6) connect analytics stuff
+7) create blog contents pages
+8) deploy to netlify, repoint domain etc

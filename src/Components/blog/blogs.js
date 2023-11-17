@@ -9,11 +9,10 @@ console.log(blogData);
 
     return(
         
-            <div class="section">
-                <p>Ulk!</p>
+            <div class="section">                
     
     <div class="text-box" >
-      <h1 class="text-center text-wrap w-75 m-auto mt-0">Resources
+      <h1 class="text-center text-wrap w-75 m-auto mt-0">Blog
       </h1>
     </div>
     {blogData.map((x)=> (
