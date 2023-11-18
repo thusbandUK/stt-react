@@ -12,7 +12,7 @@ function Contact(props){
   <div className="row featurette" id="booking-container">     
      <div>
       {/*Removed from dir below: data-netlify-recaptcha="true"  */}
-      <form action="/thanks.html" name="Contact-form1" method="POST">
+      <form name="Contact-form1" method="POST">
         {/*Hidden section to identify source of traffic*/}
         <div className="form-group my-1">
           
