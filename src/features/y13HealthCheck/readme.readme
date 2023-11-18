@@ -3,6 +3,8 @@ things to do:
 sync forms between index.html and their components, names:
 Contact-form1
 
+the hidden input marks the JSX not the html
+
 BLOG!
 
 1) add the data for the other blogs

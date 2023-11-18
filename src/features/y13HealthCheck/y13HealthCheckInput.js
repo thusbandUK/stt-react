@@ -71,6 +71,8 @@ const onValueCheck = (event) => {
       
       {/*As in sister ...Feedback.js file, the below will want uncommenting when the site is launched on Netlify */}
      <form id="form" name="y13-health-check" netlify method="POST" action="/resources/y13-health-check-submission.html" data-netlify="true" data-netlify-recaptcha="true" content-Type="application/x-www-form-urlencoded">
+     {/*This hidden input is to enable the netlify bots to match forms */}
+     <input type="hidden" name="form-name" value="y13-health-check" />
      {/*<form id="form" name="y13-health-check" data-netlify="true" data-netlify-recaptcha="true" content-Type="application/x-www-form-urlencoded">*/}
       <div class="form-group my-1">
         
