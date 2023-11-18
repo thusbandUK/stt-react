@@ -9,7 +9,8 @@ function Contact(props){
 
   <div className="row featurette" id="booking-container">     
      <div>
-      <form action="/thanks.html" name="Contact-form" method="POST" data-netlify="true" data-netlify-recaptcha="true" content-Type="application/x-www-form-urlencoded">
+      {/*Removed from dir below: data-netlify-recaptcha="true"  */}
+      <form action="https://silly-boba-5ffcd9.netlify.app/thanks.html" name="Contact-form" method="POST" data-netlify="true" content-Type="application/x-www-form-urlencoded">
         {/*Hidden section to identify source of traffic*/}
         <div className="form-group my-1">
           
@@ -46,7 +47,7 @@ function Contact(props){
           <label for="inquiry">Your inquiry. Feel free to include time(s) you would like tutoring</label>
           <textarea className="form-control" id="inquiry" rows="3" name="inquiry"></textarea>
         </div>
-        <div className="w-100" data-netlify-recaptcha="true"></div>
+        {/*<div className="w-100" data-netlify-recaptcha="true"></div>*/}
         <button type="submit" className="btn btn-lg btn-default">Submit</button>
       </form>
      </div>
