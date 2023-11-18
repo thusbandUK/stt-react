@@ -1,5 +1,8 @@
 things to do:
 
+sync forms between index.html and their components, names:
+Contact-form1
+
 BLOG!
 
 1) add the data for the other blogs
@@ -14,3 +17,5 @@ BLOG!
 https://prerender.io/pricing/ (which has a free version like netlify) and https://github.com/netlify/prerender 
 (when you build the back end you can configure it from there, see the react-helmet-async docs and freecodecamp
 expo)
+10) oof, more issues, to enable netlify to discover the forms, you need to include hidden versions of them
+in the index.html file prebuild, see here: https://www.freecodecamp.org/news/how-to-add-a-netlify-form-to-a-react-app/

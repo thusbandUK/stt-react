@@ -59,14 +59,57 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
+      first form, this needs to be here so that Netlify bots detect it in the build, but it should be hidden
+      and stripped of all but a few details. 
+        i) inputs should only have name and value
+        ii) textarea (and possibly select) should only have name
+        iii) all labels get removed
+      Finally it should have a hidden input which effectively gives
+      the form a title within Netlify
     -->
+
+    <form name="Contact-form1" netlify netlify-honeypot="bot-field" hidden>
+      <!--Hidden section to identify source of traffic-->
+      <div className="form-group my-1">
+        
+          <input type="hidden" className="form-control" id="origin" placeholder="Origin code" name="origin"></input>
+        
+      </div>
+      <div className="form-group my-1">
+        
+        <input type="name" name="name"></input>
+      </div>
+      <div className="form-group my-1">
+        
+        <input type="email" name="email"></input>
+        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      
+      <div className="form-group my-1">
+        
+        <select name="exam-board" >
+          <option selected placeholder="Disabled input" disabled>Click to select</option>
+          <option>A-level AQA</option>
+          <option>A-level Edexcel</option>
+          <option>A-level OCR A</option>
+          <option>A-level OCR B</option>      
+          <option>GCSE AQA</option>
+          <option>GCSE Edexcel</option>
+          <option>IGCSE Edexcel</option>
+          <option>GCSE OCR Gateway</option>
+          <option>GCSE OCR Twenty First Century</option>
+          <option>Other (please specify below)</option>
+        </select>
+      </div>
+      <div className="form-group my-1">
+        
+        <textarea name="inquiry"></textarea>
+      </div>
+      <!--Hidden input below is important to help netlify bots detect in build and the value needs to 
+      match the name of the whole form-->
+      <input type="hidden" name="form-name" value="Contact-form1" />
+      <div className="w-100" data-netlify-recaptcha="true"></div>
+      
+    </form>
   </body>
 </html>
