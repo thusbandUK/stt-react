@@ -2,18 +2,7 @@ import React from "react";
 
 function Contact(props){
 
-  function handleSubmit(e) {
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", ...this.state })
-    })
-      .then(() => alert("Success!"))
-      .catch(error => alert(error));
-
-    e.preventDefault();
-
-  }
+  
 
   return (
     /*Availability and contact form*/
