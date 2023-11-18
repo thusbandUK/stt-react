@@ -13,6 +13,9 @@ function Contact(props){
      <div>
       {/*Removed from dir below: data-netlify-recaptcha="true"  */}
       <form name="Contact-form1" method="POST">
+      {/*Hidden input below is important to help netlify bots detect in build and the value needs to 
+      match the name of the whole form*/}
+      <input type="hidden" name="form-name" value="Contact-form1" />
         {/*Hidden section to identify source of traffic*/}
         <div className="form-group my-1">
           
