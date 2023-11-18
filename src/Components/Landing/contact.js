@@ -2,6 +2,19 @@ import React from "react";
 
 function Contact(props){
 
+  function handleSubmit(e) {
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact", ...this.state })
+    })
+      .then(() => alert("Success!"))
+      .catch(error => alert(error));
+
+    e.preventDefault();
+
+  }
+
   return (
     /*Availability and contact form*/
 <div className="section"  id="inquiries">
@@ -10,7 +23,7 @@ function Contact(props){
   <div className="row featurette" id="booking-container">     
      <div>
       {/*Removed from dir below: data-netlify-recaptcha="true"  */}
-      <form action="https://silly-boba-5ffcd9.netlify.app/thanks.html" name="Contact-form" method="POST" data-netlify="true" content-Type="application/x-www-form-urlencoded">
+      <form name="Contact-form1" method="post">
         {/*Hidden section to identify source of traffic*/}
         <div className="form-group my-1">
           
