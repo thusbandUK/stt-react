@@ -90,12 +90,7 @@ const onValueCheck = (event) => {
        {/*As in sister ...Feedback.js file, the below will want uncommenting when the site is launched on Netlify */}
        <button type="submit" class="btn btn-lg btn-default" value="form-submit">Submit
        {/*<button type="submit" class="btn btn-lg btn-default" >*/}
-        <NavLink
-        to={'/resources/y13-health-check-feedback'}
-        className="navlink-button"
-        >
-        Submit
-        </NavLink></button>
+        </button>
      </form>
 
      <output id="output"></output>
@@ -111,3 +106,15 @@ const onValueCheck = (event) => {
 
 export default Y13HealthCheckInput;
 
+/*
+
+I removed this from the submit logic because it shouldn't be necessary in the production build"
+
+
+<NavLink
+        to={'/resources/y13-health-check-feedback'}
+        className="navlink-button"
+        >
+        Submit
+        </NavLink>
+*/
