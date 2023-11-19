@@ -121,7 +121,7 @@ const onValueCheck = (event) => {
         <h3>Get in touch</h3>
         <p>If you would like to discuss your feedback in more detail, please fill in the contact form below.</p>    
         <div>
-         <form action="/thanks.html" name="health-check-contact-form" method="POST" data-netlify="true" data-netlify-recaptcha="true" content-Type="application/x-www-form-urlencoded">
+         <form action="/thanks.html" name="Contact-form2" method="POST" data-netlify="true" data-netlify-recaptcha="true" content-Type="application/x-www-form-urlencoded">
            <input type="hidden" name="form-name" value="Contact-form2" />
            <div class="form-group my-1">
              <label for="name">Name</label>

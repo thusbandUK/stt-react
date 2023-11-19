@@ -1,6 +1,8 @@
 things to do:
 
-Need to connect Contact-form2 and optimise
+Need to debug Contact-form2 and test that it sends generated identifier code. The form's detected
+but it's not getting submitted. I wonder if it's that you need to do the honeypot anti-spam method
+instead of recaptcha, you need to rename the hidden bot input field
 
 
 the hidden input marks the JSX not the html
