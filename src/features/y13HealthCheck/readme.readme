@@ -1,9 +1,7 @@
 things to do:
 
-sync forms between index.html and their components, names:
-Contact-form1
-Euch - looks like there's problematic code in the index.html hidden form, you probably need to remove
-everything except inputs, comment out all but q1, get that one working, rinse wash repeat
+Need to connect Contact-form2 and optimise
+
 
 the hidden input marks the JSX not the html
 
@@ -23,3 +21,4 @@ https://prerender.io/pricing/ (which has a free version like netlify) and https:
 expo)
 10) oof, more issues, to enable netlify to discover the forms, you need to include hidden versions of them
 in the index.html file prebuild, see here: https://www.freecodecamp.org/news/how-to-add-a-netlify-form-to-a-react-app/
+11) figure out why the favicon keeps reverting to react boilerplate
