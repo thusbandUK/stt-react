@@ -2,6 +2,8 @@ things to do:
 
 sync forms between index.html and their components, names:
 Contact-form1
+Euch - looks like there's problematic code in the index.html hidden form, you probably need to remove
+everything except inputs, comment out all but q1, get that one working, rinse wash repeat
 
 the hidden input marks the JSX not the html
 
