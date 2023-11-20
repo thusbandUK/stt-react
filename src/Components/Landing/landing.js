@@ -18,13 +18,17 @@ function Landing(props){
     //code below reads params and transfers payload to hidden field of form
     var url_string = window.location.href;
     var url = new URL(url_string);
-    var c = url.searchParams.get("origin");
-    if (c){
+    let origin;
+    if (url.searchParams){
+      origin = url.searchParams.get("origin");
+    }
+    
+    if (origin){
        //transfer params payload to hidden form field "origin" to be parsed by Netlify
-       document.getElementById('origin').value = c;    
+       document.getElementById('origin').value = origin;    
        } else {
        //sends a message saying origin unknown  
-       document.getElementById('identifier').value = 'no params to indicate origin';  
+       document.getElementById('origin').value = 'no params to indicate origin';  
        }
 
   })
