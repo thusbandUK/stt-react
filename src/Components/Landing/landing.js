@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Hero from './hero';
 import Testimonial from './testimonial';
 import Credentials from './credentials';
@@ -10,6 +10,27 @@ import { Helmet } from 'react-helmet-async';
 
 
 function Landing(props){
+
+  /* params harvesting function */
+  //autopopulates hidden identifier form field, either w query params or randomly generated
+
+  useEffect(() => {
+    //code below reads params and transfers payload to hidden field of form
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var c = url.searchParams.get("origin");
+    if (c){
+       //transfer params payload to hidden form field "origin" to be parsed by Netlify
+       document.getElementById('origin').value = c;    
+       } else {
+       //sends a message saying origin unknown  
+       document.getElementById('identifier').value = 'no params to indicate origin';  
+       }
+
+  })
+  
+        
+  /* params harvesting function ends */
 
 
 
