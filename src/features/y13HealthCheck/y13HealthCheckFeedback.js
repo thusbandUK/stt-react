@@ -61,7 +61,7 @@ const onValueCheck = (event) => {
      <form id="form" name="y13-health-check" data-netlify="true" data-netlify-recaptcha="true" content-Type="application/x-www-form-urlencoded">
       <div class="form-group my-1">
         
-          <input type="hidden" class="form-control" id="identifier" placeholder="Identification code" name="identifier" />
+          {/*<input type="hidden" class="form-control" id="identifier" placeholder="Identification code" name="identifier" />*/}
         
       </div>
       
