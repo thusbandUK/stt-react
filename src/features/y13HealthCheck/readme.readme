@@ -12,7 +12,7 @@ BLOG!
 1) add the data for the other blogs
 2) add @babel/plugin-proposal-private-property-in-object to dependencies at some point - still needs addressing
 3) work through other error messages and warnings
-4) reconnect the forms when the site is launched on Netlify
+4) debug contact-form2 why not picking up identifier
 5) create pages for cookies and connect the React cookie banner
 6) connect analytics stuff
 7) create blog contents pages
