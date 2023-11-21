@@ -57,7 +57,7 @@ function BlogContainer(props){
                 <div style={style} className="text-box d-flex flex-column" >
                   
                   <NavLink
-                  to="https://sciencetutortom.com"
+                  to="/#hero"
                   className="navbar-brand">
                      <h2 className="text-center text-wrap w-75 m-auto fs-1 my-5">Click here for more information about how I tutor</h2>
                   </NavLink>

@@ -2,7 +2,7 @@ import React from "react";
 
 function Hero(props){
     return(
-        <div class="hero-text m-lg-5">
+        <div class="hero-text m-lg-5" id="hero">
           <div id="hero-text-row" class="row d-flex">
             <div class="col-lg-4 col-md-6">
               <img class="img-fluid" src="images/portrait-of-me.jpg"></img>
