@@ -7,19 +7,19 @@ import { Helmet } from "react-helmet-async";
 function BlogContainer(props){
 
     const urlSuffix = useParams().blogPost;
-    console.log(urlSuffix);
+    //console.log(urlSuffix);
 
     const blogIndex = blogs.blogs.findIndex((x)=>{
-        console.log(x.hyperLink);
+        //console.log(x.hyperLink);
         return x.hyperLink === urlSuffix;
     })
 
+    const url = `https:sciencetutortom.com/blog/${urlSuffix}`;
     const blogData = blogs.blogs[blogIndex];
-    console.log(blogs.blogs[blogIndex].content);
+    //console.log(blogs.blogs[blogIndex].content);
 
     const style = {
-        backgroundColor: "var(--tan)"
-        
+        backgroundColor: "var(--tan)"        
     }
 
 
@@ -46,6 +46,8 @@ code will need to be updated with some kind of logic tree that renders the objec
                   <meta property="og:title" content={blogData.blogTitle} />
                   <meta property="og:description" content={blogData.blogDescription} />
                   <meta property="og:image" content={blogData.imageLink} />
+                  <meta property="og:image:alt" content={blogData.altText} />
+                  <meta property="og:url" content={url}
                   
                 { /* End Facebook tags */ } 
                 </Helmet>
