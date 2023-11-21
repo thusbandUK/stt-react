@@ -1,6 +1,9 @@
 things to do:
 
-0.5) alt text for og:image FB scraper and pageid
+0.5) alt text for og:image FB scraper and pageid - SO CODE HAS BEEN UPDATED TO IMPLEMENT THESE CHANGES
+CHECK IN TOMORROW (WEDS 22) TO CHECK IT'S ALL WORKING
+0.75) Update blogContainer w logic at the bottom to render a link to the home page - inquire about lessons
+0.9) nowchemistry open in new tab
 1) add the data for the other blogs
 2) add @babel/plugin-proposal-private-property-in-object to dependencies at some point - still needs addressing
 3) work through other error messages and warnings

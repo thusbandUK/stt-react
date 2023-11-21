@@ -4,16 +4,24 @@ import Link from "../HeaderAndFooter/Link";
 
 function ResourceLink(props){
 
+  function external() {
+    if (props.hyperLinkExternal === 'true'){
+    return {to: props.hyperLink, target: "_blank"};
+  } else {
+    return {to: `/resources/${props.hyperLink}`, target: "_self"};
+  }  
+  } 
+  
+  
+
     
     return(
         <div className="card mb-3 w-100 mt-5 menu-card-body" >  
             <NavLink 
-                    to={
-                        (props.hyperLinkExternal === 'true') ? 
-                        props.hyperLink    :            
-                        `/resources/${props.hyperLink}`
-                    }
-                    className="nav-link"                   
+                    to={external().to}
+                    className="nav-link"  
+                    target={external().target}
+                    rel="noreferrer"                    
                   >                    
                 
         
@@ -34,19 +42,3 @@ function ResourceLink(props){
 
 export default ResourceLink;
 
-/*
-<div className="row g-0">        
-              <div className="col-md-4 d-flex">
-                <img src={props.imageLink} className="img-fluid rounded-start" alt={props.altText}></img>
-              </div>      
-              <div className="col-md-7 whole-menu-link">      
-        
-                <div className="card-body">
-                  <h2 className="card-title">{props.resourceTitle}</h2>
-                  <p className="card-text">{props.resourceDescription}</p>
-                  <p className="card-text"><small className="text-muted">Last updated {props.lastUpdated}</small></p>
-                </div>
-         
-               </div>   
-            </div>
-*/

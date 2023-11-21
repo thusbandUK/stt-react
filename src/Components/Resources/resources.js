@@ -23,6 +23,7 @@ function Resources(props){
       hyperLinkExternal={x.hyperLinkExternal}
       resourceDescription={x.resourceDescription}
       lastUpdated={x.lastUpdated}
+      
     />
     
 ))}
