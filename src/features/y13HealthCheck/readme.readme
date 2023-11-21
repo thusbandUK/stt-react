@@ -1,26 +1,14 @@
 things to do:
 
-Need to debug Contact-form2 and test that it sends generated identifier code. The form's detected
-but it's not getting submitted. I wonder if it's that you need to do the honeypot anti-spam method
-instead of recaptcha, you need to rename the hidden bot input field
-
-
-the hidden input marks the JSX not the html
-
-BLOG!
-
 1) add the data for the other blogs
 2) add @babel/plugin-proposal-private-property-in-object to dependencies at some point - still needs addressing
 3) work through other error messages and warnings
-4) debug contact-form2 why not picking up identifier
 5) create pages for cookies and connect the React cookie banner
 6) connect analytics stuff - this has to be done after the stt domain is pointed at the site
 8) repoint domain
 9) euch, you need to do various things to get SEO to work w netlify, not too much (hopefully), you need 
 https://prerender.io/pricing/ (which has a free version like netlify) and https://github.com/netlify/prerender 
 (when you build the back end you can configure it from there, see the react-helmet-async docs and freecodecamp
-expo)
-10) oof, more issues, to enable netlify to discover the forms, you need to include hidden versions of them
-in the index.html file prebuild, see here: https://www.freecodecamp.org/news/how-to-add-a-netlify-form-to-a-react-app/
+expo) - OKAY, THAT'S PENDING NETLIFY RESPONDING TO AN EMAIL
 11) figure out why the favicon keeps reverting to react boilerplate
-12) connect the landing page logic which harvests any params and adds to hidden input in contact form1
+

@@ -22,7 +22,7 @@ import { useParams, useLocation } from 'react-router-dom';
 //import { NavLink } from 'react-router-dom';
 //import { useParams, useLocation } from 'react-router-dom';
 //import usePageTracking from './usePageTracking';
-//import CookieConsent, { Cookies, getCookieConsentValue } from "react-cookie-consent";
+import CookieConsent, { Cookies, getCookieConsentValue } from "react-cookie-consent";
 
 
 
@@ -32,6 +32,22 @@ function App() {
 
   return (
     <HelmetProvider>
+      
+      <CookieConsent
+      enableDeclineButton
+      onDecline={() => {
+        window.gtag('consent', 'update', {
+          analytics_storage: 'denied'        
+          });
+          console.log('permission denied');
+      }}
+      onAccept={() => {
+        window.gtag('consent', 'update', {
+          analytics_storage: 'granted'        
+          });
+          console.log('permission granted');
+      }}
+      >This website uses cookies to enhance the user experience.</CookieConsent> {/**/}
     <div className="App">
       <ScrollToAnchor />
       <Header 
