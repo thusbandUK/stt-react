@@ -47,7 +47,7 @@ code will need to be updated with some kind of logic tree that renders the objec
                   <meta property="og:description" content={blogData.blogDescription} />
                   <meta property="og:image" content={blogData.imageLink} />
                   <meta property="og:image:alt" content={blogData.altText} />
-                  <meta property="og:url" content={url}
+                  <meta property="og:url" content={url} />
                   
                 { /* End Facebook tags */ } 
                 </Helmet>
