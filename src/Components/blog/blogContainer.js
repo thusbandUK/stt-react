@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import blogs from './blogData.json';
 import { Interweave } from 'interweave';
 import { Helmet } from "react-helmet-async";
@@ -21,12 +21,6 @@ function BlogContainer(props){
     const style = {
         backgroundColor: "var(--tan)"        
     }
-
-
-/*
-Since this is the only current resource, the code works fine, but as additional resources are added, this
-code will need to be updated with some kind of logic tree that renders the object by the path chosen
-*/
 
     return (
         
@@ -59,7 +53,18 @@ code will need to be updated with some kind of logic tree that renders the objec
                 content={blogs.blogs[blogIndex].content}
             
                 />
-            </div>
+                </div> {/*section ends */}
+                <div style={style} className="text-box d-flex flex-column" >
+                  
+                  <NavLink
+                  to="https://sciencetutortom.com"
+                  className="navbar-brand">
+                     <h2 className="text-center text-wrap w-75 m-auto fs-1 my-5">Click here for more information about how I tutor</h2>
+                  </NavLink>
+                  
+                  
+                  
+                </div>
         </div>
 
     )
