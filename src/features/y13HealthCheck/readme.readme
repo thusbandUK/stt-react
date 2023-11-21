@@ -1,11 +1,12 @@
 things to do:
 
+0.5) alt text for og:image FB scraper and pageid
 1) add the data for the other blogs
 2) add @babel/plugin-proposal-private-property-in-object to dependencies at some point - still needs addressing
 3) work through other error messages and warnings
-5) create pages for cookies and connect the React cookie banner
-6) connect analytics stuff - this has to be done after the stt domain is pointed at the site
-8) repoint domain
+6) keep an eye on analytics
+7) connect FB tagging data, as with google tags, it may be as simple as just transferring the code * crosses
+fingers *
 9) euch, you need to do various things to get SEO to work w netlify, not too much (hopefully), you need 
 https://prerender.io/pricing/ (which has a free version like netlify) and https://github.com/netlify/prerender 
 (when you build the back end you can configure it from there, see the react-helmet-async docs and freecodecamp
