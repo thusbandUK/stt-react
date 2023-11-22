@@ -22,7 +22,7 @@ import { useParams, useLocation } from 'react-router-dom';
 //import { NavLink } from 'react-router-dom';
 //import { useParams, useLocation } from 'react-router-dom';
 //import usePageTracking from './usePageTracking';
-import CookieConsent, { Cookies, getCookieConsentValue } from "react-cookie-consent";
+import CookieConsent, { Cookies, getCookieConsentValue, resetCookieConsentValue } from "react-cookie-consent";
 
 
 
@@ -30,11 +30,31 @@ function App() {
 
   const pathName = useLocation().pathname;
 
+  //let cookieDisplay = "hidden";
+
+  /*
+  let cookieDisplay;
+
+  function handleCookies(){
+    console.log('handleCookies function called');
+    resetCookieConsentValue();
+    
+    cookieDisplay = "show";
+    console.log(cookieDisplay);
+  }
+
+  visible={cookieDisplay}
+
+  handleCookies={handleCookies}
+  */
+  
+
   return (
     <HelmetProvider>
       
       <CookieConsent
       enableDeclineButton
+      
       onDecline={() => {
         window.gtag('consent', 'update', {
           analytics_storage: 'denied'        

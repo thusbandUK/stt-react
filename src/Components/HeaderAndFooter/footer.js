@@ -1,9 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import CookieConsent, { Cookies, resetCookieConsentValue } from "react-cookie-consent";
 
 function Footer(props){
-
-
 
 
 return (
@@ -19,7 +18,12 @@ return (
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav  ms-auto nav">  
         <li class="nav-item">
-          <a class="nav-link" href="#" id="open_preferences_center">Cookies</a>
+          <NavLink
+          to={"/Privacy/#cookies-statement"}
+          className="nav-link"
+          >
+            Cookies
+          </NavLink>          
         </li>        
         <li class="nav-item">
           <NavLink          
@@ -57,3 +61,9 @@ return (
 }
 
 export default Footer;
+
+/*
+handleCookies={handleCookies}
+
+<a class="nav-link" href="#" id="open_preferences_center">Cookies</a>         
+*/

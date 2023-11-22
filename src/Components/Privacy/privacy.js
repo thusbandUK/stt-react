@@ -155,7 +155,7 @@ const Privacy = (props) => {
       you have opted to receive emails by contacting me directly with an enquiry.
   </p>
   <p>
-      <strong>Cookies</strong>
+      <strong id="cookies-statement">Cookies</strong>
       
   </p>
   <p>
