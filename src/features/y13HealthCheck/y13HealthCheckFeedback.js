@@ -42,35 +42,35 @@ const onValueCheck = (event) => {
 
 
     return(
-        <div class="section">
+        <div className="section">
     
-    <div class="text-box" >
-  <h1 class="text-center text-wrap w-75 m-auto mt-0 fs-1 mt-5">A-level chemistry health check results
+    <div className="text-box" >
+  <h1 className="text-center text-wrap w-75 m-auto mt-0 fs-1 mt-5">A-level chemistry health check results
   </h1>
 </div>
-<div class="mt-5">
+<div className="mt-5">
   <p>Your details have been anonymously saved, thank you. Scroll down to see your results. Answers highlighted yellow are correct, 
     red answers are incorrect.</p>
   
 </div>
 
-<div class="row featurette">     
+<div className="row featurette">     
     <div>
       
      {/*<form id="form" name="y13-health-check" method="POST" action="/resources/y13-health-check-submission.html" data-netlify="true" data-netlify-recaptcha="true" content-Type="application/x-www-form-urlencoded">*/}
      <form id="form" name="y13-health-check" data-netlify="true" data-netlify-recaptcha="true" content-Type="application/x-www-form-urlencoded">
-      <div class="form-group my-1">
+      <div className="form-group my-1">
         
-          {/*<input type="hidden" class="form-control" id="identifier" placeholder="Identification code" name="identifier" />*/}
+          {/*<input type="hidden" className="form-control" id="identifier" placeholder="Identification code" name="identifier" />*/}
         
       </div>
       
       <Y13HealthCheckQuestions />
 
 {/*Below may need deleting or uncommenting once the site has been launched on netlify */}
-{/*<div class="w-100" data-netlify-recaptcha="true"></div>
-       <button type="submit" class="btn btn-lg btn-default" value="form-submit">Submit</button>
-       <button type="submit" class="btn btn-lg btn-default" onClick={formSubmission}>Submit</button>*/}
+{/*<div className="w-100" data-netlify-recaptcha="true"></div>
+       <button type="submit" className="btn btn-lg btn-default" value="form-submit">Submit</button>
+       <button type="submit" className="btn btn-lg btn-default" onClick={formSubmission}>Submit</button>*/}
      </form>
 
      {/*Feedback div renders feedback according to input */}
@@ -117,31 +117,31 @@ const onValueCheck = (event) => {
      {/*contact form*/}
       
 
-      <div class="row featurette" id="health-check-contact-form-container"> 
+      <div className="row featurette" id="health-check-contact-form-container"> 
         <h3>Get in touch</h3>
         <p>If you would like to discuss your feedback in more detail, please fill in the contact form below.</p>    
         <div>
          <form action="/thanks.html" name="Contact-form2" method="POST" data-netlify="true" data-netlify-recaptcha="true" content-Type="application/x-www-form-urlencoded">
            <input type="hidden" name="form-name" value="Contact-form2" />
-           <div class="form-group my-1">
+           <div className="form-group my-1">
              <label for="name">Name</label>
-             <input type="name" class="form-control" id="name" placeholder="Name" name="name" />
+             <input type="name" className="form-control" id="name" placeholder="Name" name="name" />
            </div>
-           <div class="form-group my-1">            
-            <input type="hidden" class="form-control" id="identifier" name="identifier" />
+           <div className="form-group my-1">            
+            <input type="hidden" className="form-control" id="identifier" name="identifier" />
           </div>
-           <div class="form-group my-1">
+           <div className="form-group my-1">
              <label for="email">Email address</label>
-             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" />
-             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+             <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" />
+             <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
            </div>          
            
-           <div class="form-group my-1">
+           <div className="form-group my-1">
              <label for="inquiry">You can include any extra information here if needed. Your answers are automatically included.</label>
-             <textarea class="form-control" id="inquiry" rows="3" name="inquiry"></textarea>
+             <textarea className="form-control" id="inquiry" rows="3" name="inquiry"></textarea>
            </div>
-           <div class="w-100" data-netlify-recaptcha="true"></div>
-           <button type="submit" class="btn btn-lg btn-default">Submit</button>
+           <div className="w-100" data-netlify-recaptcha="true"></div>
+           <button type="submit" className="btn btn-lg btn-default">Submit</button>
          </form>
         </div>
      </div>

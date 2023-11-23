@@ -53,30 +53,30 @@ const onValueCheck = (event) => {
 
 
     return(
-        <div class="section">
+        <div className="section">
     
-<div class="text-box" >
-  <h1 class="text-center text-wrap w-75 m-auto mt-0 fs-1 mt-5">A-level chemistry health check for year 13 students
+<div className="text-box" >
+  <h1 className="text-center text-wrap w-75 m-auto mt-0 fs-1 mt-5">A-level chemistry health check for year 13 students
   </h1>
 </div>
-<div class="mt-5">
+<div className="mt-5">
   <p>This page features a series of multiple choice questions which will test your understanding of key features of the year 12
   A-level chemistry course. After the form is submitted, you'll see which answers you got right or wrong, followed by a list of strengths
   and targets for improvement.</p>
   <p>Your answers will be saved anonymously, which helps to improve the website. </p>
 </div>
 
-<div class="row featurette">     
+<div className="row featurette">     
     <div>
       
       {/*As in sister ...Feedback.js file, the below will want uncommenting when the site is launched on Netlify */}
-     <form id="form" name="y13-health-check" netlify method="POST" action="/resources/y13-health-check-feedback" data-netlify="true" data-netlify-recaptcha="true" content-Type="application/x-www-form-urlencoded">
+     <form id="form" name="y13-health-check" netlify method="POST" action="/resources/y13-health-check-feedback" data-netlify="true" content-Type="application/x-www-form-urlencoded">
      {/*This hidden input is to enable the netlify bots to match forms */}
      <input type="hidden" name="form-name" value="y13-health-check" />
      {/*<form id="form" name="y13-health-check" data-netlify="true" data-netlify-recaptcha="true" content-Type="application/x-www-form-urlencoded">*/}
-      <div class="form-group my-1">
+      <div className="form-group my-1">
         
-          <input type="hidden" class="form-control" id="identifier" placeholder="Identification code" name="identifier" />
+          <input type="hidden" className="form-control" id="identifier" placeholder="Identification code" name="identifier" />
         
       </div>
       
@@ -86,10 +86,10 @@ const onValueCheck = (event) => {
       />
 
        
-       <div class="w-100" data-netlify-recaptcha="true"></div>
+       {/*<div className="w-100" data-netlify-recaptcha="true"></div>*/}
        {/*As in sister ...Feedback.js file, the below will want uncommenting when the site is launched on Netlify */}
-       <button type="submit" class="btn btn-lg btn-default" value="form-submit">Submit
-       {/*<button type="submit" class="btn btn-lg btn-default" >*/}
+       <button type="submit" className="btn btn-lg btn-default" value="form-submit">Submit
+       {/*<button type="submit" className="btn btn-lg btn-default" >*/}
         </button>
      </form>
 
@@ -117,4 +117,9 @@ I removed this from the submit logic because it shouldn't be necessary in the pr
         >
         Submit
         </NavLink>
+
+REMOVED FROM FORM OPENING
+
+data-netlify-recaptcha="true" 
+
 */

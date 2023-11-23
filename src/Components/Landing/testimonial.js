@@ -11,9 +11,9 @@ const testimonialText = testimonialsText[testimonialNumber];
 //console.log(testimonialText[0]);
 
     return (
-        <div class="testimonial">
-          <div class="section testimonial-inner">
-            <p class="py-5 fs-1">{testimonialText}</p>        
+        <div className="testimonial">
+          <div className="section testimonial-inner">
+            <p className="py-5 fs-1">{testimonialText}</p>        
           </div>
         </div>
     )

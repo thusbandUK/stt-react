@@ -5,19 +5,20 @@ import blogs from './blogData.json';
 function Blog(props) {
 
 const blogData = blogs.blogs;
-console.log(blogData);
+//console.log(blogData);
 
     return(
         
-            <div class="section">                
+            <div className="section">                
     
-    <div class="text-box" >
-      <h1 class="text-center text-wrap w-75 m-auto mt-0">Blog
+    <div className="text-box" >
+      <h1 className="text-center text-wrap w-75 m-auto mt-0">Blog
       </h1>
     </div>
     {blogData.map((x)=> (
         
         <BlogLink
+          key={Number(x.id)}  
           altText={x.altText}
           blogTitle={x.blogTitle}
           imageLink={x.imageLink}      

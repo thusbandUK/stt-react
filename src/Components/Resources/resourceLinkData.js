@@ -1,5 +1,6 @@
 export const resourceLinkData = [
     {
+        id: 1,
         resourceTitle: "Year 13 chemistry health check",
         imageLink: "/images/resources/health-check.png",
         altText: "graphic illustration of heart pulse rate",
@@ -9,6 +10,7 @@ export const resourceLinkData = [
         lastUpdated: "21-9-23"
     },
     {
+        id: 2,
         resourceTitle: "Reactions of complex ions",
         imageLink: "/images/resources/colourful-solutions.jpg",
         altText: "brightly coloured solutions in conical flasks",

@@ -23,19 +23,19 @@ function Contact(props){
           
         </div>
         <div className="form-group my-1">
-          <label for="name">Name</label>
+          <label htmlFor="name">Name</label>
           <input type="name" className="form-control" id="name" placeholder="Name" name="name"></input>
         </div>
         <div className="form-group my-1">
-          <label for="email">Email address</label>
+          <label htmlFor="email">Email address</label>
           <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email"></input>
           <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         
         <div className="form-group my-1">
-          <label for="exam-board">Level and exam board</label>
-          <select className="form-select" id="exam-board" name="exam-board" >
-            <option selected placeholder="Disabled input" disabled>Click to select</option>
+          <label htmlFor="exam-board">Level and exam board</label>
+          <select defaultValue="Click to select" className="form-select" id="exam-board" name="exam-board" >
+            <option placeholder="Disabled input" disabled>Click to select</option>
             <option>A-level AQA</option>
             <option>A-level Edexcel</option>
             <option>A-level OCR A</option>
@@ -49,7 +49,7 @@ function Contact(props){
           </select>
         </div>
         <div className="form-group my-1">
-          <label for="inquiry">Your inquiry. Feel free to include time(s) you would like tutoring</label>
+          <label htmlFor="inquiry">Your inquiry. Feel free to include time(s) you would like tutoring</label>
           <textarea className="form-control" id="inquiry" rows="3" name="inquiry"></textarea>
         </div>
         {/*<div className="w-100" data-netlify-recaptcha="true"></div>*/}
@@ -63,3 +63,11 @@ function Contact(props){
 }
 
 export default Contact;
+
+/*
+removed from select menu
+
+<option selected placeholder="Disabled input" disabled>Click to select</option>
+
+selected 
+*/

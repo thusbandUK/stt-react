@@ -7,15 +7,16 @@ function Resources(props){
 
     return (
         
-<div class="section">
+<div className="section">
     
-<div class="text-box" >
-  <h1 class="text-center text-wrap w-75 m-auto mt-0">Resources
+<div className="text-box" >
+  <h1 className="text-center text-wrap w-75 m-auto mt-0">Resources
   </h1>
 </div>
 {resourceLinkData.map((x)=> (
     
     <ResourceLink
+      key={x.id}
       altText={x.altText}
       resourceTitle={x.resourceTitle}
       imageLink={x.imageLink}      

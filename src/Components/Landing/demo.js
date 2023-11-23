@@ -9,7 +9,7 @@ function Demo(props){
               <p>Why does heating evaporated milk make caramel? This video captures me in my element, so to speak, using the flavour of 
               banoffee pie as a context to explore an important part of the UK A-level chemistry syllabus - the structure and bonding
               of benzene.</p>
-            <iframe id="video-container" src="https://www.youtube.com/embed/TrB3lXkF7w8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe id="video-container" src="https://www.youtube.com/embed/TrB3lXkF7w8" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
  
            </div>
            )

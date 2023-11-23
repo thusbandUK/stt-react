@@ -12,6 +12,9 @@ import Y13HealthCheckFeedback from './features/y13HealthCheck/y13HealthCheckFeed
 import Privacy from './Components/Privacy/privacy';
 import Blog from './Components/blog/blogs';
 import BlogContainer from './Components/blog/blogContainer';
+import ErrorPage from './error-page';
+import Header from './Components/HeaderAndFooter/header';
+import Footer from './Components/HeaderAndFooter/footer';
   
 //import ReactionsContainer from './components/reactionsContainer/reactionsContainer';
 //import Introduction from './components/introduction/Introduction';
@@ -22,7 +25,7 @@ import BlogContainer from './Components/blog/blogContainer';
   const router = createBrowserRouter(    
     createRoutesFromElements(     
       
-      <Route path="/" element={<App />} >
+      <Route path="/" element={<App />} errorElement={<ErrorPage />}>
         <Route path="/" element={<Landing />} />
         <Route path="/privacy/" element={<Privacy />} />
         <Route path="/blog/" element={<Blog />} />

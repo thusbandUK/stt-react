@@ -28,7 +28,9 @@ import CookieConsent, { Cookies, getCookieConsentValue, resetCookieConsentValue 
 
 function App() {
 
-  const pathName = useLocation().pathname;
+
+
+  //const pathName = useLocation().pathname;
 
   //let cookieDisplay = "hidden";
 
@@ -71,7 +73,7 @@ function App() {
     <div className="App">
       <ScrollToAnchor />
       <Header 
-      pathName={pathName}
+      
       />
       <Outlet />
       {/*<Landing />*/}
@@ -102,5 +104,8 @@ culled from boilerplatec:\Users\tadat\Dropbox\coding\personal projects\Science T
           Learn React
         </a>
       </header>
+
+REMOVED FROM HEADER
+      pathName={pathName}
 
 */
