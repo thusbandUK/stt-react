@@ -1,5 +1,12 @@
 things to do:
 
+0.09) read this: https://v5.reactrouter.com/web/guides/testing 
+the tests aren't working because they need to be configured to encounter react-router-dom components
+0.1) Euch. So basically my navLinks and ScrollToHash components seem to be getting called from outside
+of the react-router-dom logic, which is preventing all but the simplest of tests from working. Drag.
+So yeah, you need to create a dev branch and figure it out. Could put a stack exchange message and then
+you'll be able to get your rep high enough to upVote posts etc.
+
 0.5) alt text for og:image FB scraper and pageid - SO CODE HAS BEEN UPDATED TO IMPLEMENT THESE CHANGES
 CHECK IN TOMORROW (WEDS 22) TO CHECK IT'S ALL WORKING
 
