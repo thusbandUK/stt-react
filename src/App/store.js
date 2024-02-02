@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import year13HealthCheckReducer from '../features/y13HealthCheck/y13HealthCheckSlice.js';
+import loginReducer from '../Components/login/loginSlice.js';
 //import examBoardReducer from '../features/examBoards/examBoardsSlice.js';
 //import menuReducer from '../features/menu/menuSlice.js';
 //import multipleChoiceQuestionReducer from '../features/textBoxCreator/textBoxElements/multipleChoiceQuestions/multipleChoiceQuestionSlice';
@@ -15,6 +16,7 @@ import { reHydrateStore, localStorageMiddleware } from './rehydrationMiddleware.
 export default configureStore({
     reducer: {
         healthCheck: year13HealthCheckReducer,
+        login: loginReducer,
         //menu: menuReducer,
         //rowOfTubes: rowOfTubesReducer,
         //textBoxCreator: textBoxCreatorReducer,
