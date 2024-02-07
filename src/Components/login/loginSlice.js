@@ -1,16 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+
+
 const initialState = {
     username: "",
-    password: ""
+    password: "",
+    nextLesson: "",
+    lessonPrice: "",
+
+    
 }
+
+
+
 
 export const loginSlice = createSlice({
     name: "login",
     initialState,
     reducers: {
       inputUsername: (state, action) => {
-        state.username = action.payload.username;
+        state.username = action.payload;
+      },
+      inputNextLesson: (state, action) => {
+        state.nextLesson = action.payload;
+      },
+      inputLessonPrice: (state, action) => {
+        state.lessonPrice = action.payload;
       },
       /*
       selectAnswer: (state, action) => {   
@@ -38,6 +53,8 @@ export const loginSlice = createSlice({
 
   export const {
     inputUsername,
+    inputNextLesson,
+    inputLessonPrice,
     /*createMCQObject,    
     selectAnswer,
     updateAnswer,

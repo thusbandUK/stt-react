@@ -2,11 +2,13 @@ import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { inputUsername } from "./loginSlice";
 import { signupRequest } from "../../api/loginCall";
+import { useNavigate } from 'react-router-dom';
 
 function Signup(){
 
     const dispatch = useDispatch();
-    const username = useSelector(state => state.login.username)
+    //const username = useSelector(state => state.login.username)
+    const navigate = useNavigate();
 
     /*
     const handleChange = (e) => {
@@ -23,7 +25,16 @@ function Signup(){
         let myEmail = document.getElementById('email');
         console.log(myUsername.value);
         //console.log(e.target.value);
-        signupRequest(myEmail.value, myUsername.value, myPassword.value);
+        const response = signupRequest(myEmail.value, myUsername.value, myPassword.value);
+        response.then((res) => {
+            if (res){
+                navigate('/welcome');
+
+            }
+            console.log('this is the front end logging');
+            console.log(res);
+        })
+
     }
 
     return(
@@ -40,7 +51,7 @@ function Signup(){
                 </label>
                 <label for="password">
                     Password
-                      <input  name="password" id="password" />                
+                      <input type="password" name="password" id="password" />                
                 </label>
                 <button type="submit">
                     login

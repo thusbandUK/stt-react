@@ -24,6 +24,7 @@ export default configureStore({
         //observationForm: observationFormReducer,
         //numberOfAtoms: numberOfAtomsReducer
     },
+    
     preloadedState: reHydrateStore(),
     middleware: getDefaultMiddleware =>
       getDefaultMiddleware().concat(localStorageMiddleware),
