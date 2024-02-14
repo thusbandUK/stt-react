@@ -17,7 +17,9 @@ import Login from './Components/login/login';
 import Welcome from './Components/login/welcome';
 import Signup from './Components/login/signup';
 import Signin from './Components/login/signin';
+import Verification from './Components/login/verification';
 import Email from './Components/login/email';
+
 
   const router = createBrowserRouter(    
     createRoutesFromElements(   
@@ -33,11 +35,11 @@ import Email from './Components/login/email';
         <Route path="/resources/y13-health-check-feedback" element ={<Y13HealthCheckFeedback />} />
         
         <Route path="/login" element={<Login />} >
-          <Route path="/login/signup" element={<Signup />} />
-          <Route path="/login/signin" element={<Signin />} />
-          
+          <Route path="/login/signup" element={<Signup />} />          
+          <Route path="/login/signin" element={<Signin />} />          
         </Route>
         <Route path="/welcome-user" element={<Welcome />} />
+        <Route path="/verification" element={<Verification />} />
         <Route path="/send-email" element={<Email />} />
       </Route>          
     )
