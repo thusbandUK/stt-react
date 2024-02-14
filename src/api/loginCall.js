@@ -45,14 +45,20 @@ export const signupRequest = async (email, username, password) => {
         }
     })
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      console.log('response was not okay');
+      const message = await response.json();
+      //console.log(message);
+      
+      throw new Error(message.message);
+      //throw new Error('Network response was not ok');
     }
     const data = await response.json();
     console.log(data);
-    return data;
+    return {success: data};
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
     //return error;
+    return {error: error.message};
   }
     /*
     .then(res => {
