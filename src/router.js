@@ -18,6 +18,8 @@ import Welcome from './Components/login/welcome';
 import Signup from './Components/login/signup';
 import Signin from './Components/login/signin';
 import Verification from './Components/login/verification';
+import Email from './Components/login/email';
+
 
   const router = createBrowserRouter(    
     createRoutesFromElements(   
@@ -38,6 +40,7 @@ import Verification from './Components/login/verification';
         </Route>
         <Route path="/welcome-user" element={<Welcome />} />
         <Route path="/verification" element={<Verification />} />
+        <Route path="/send-email" element={<Email />} />
       </Route>          
     )
   );
