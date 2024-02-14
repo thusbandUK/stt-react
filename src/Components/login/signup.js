@@ -28,7 +28,7 @@ function Signup(){
         const response = signupRequest(myEmail.value, myUsername.value, myPassword.value);
         response.then((res) => {
             if (res){
-                navigate('/welcome');
+                navigate('/welcome-user');
 
             }
             console.log('this is the front end logging');

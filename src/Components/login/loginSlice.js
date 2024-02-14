@@ -48,6 +48,7 @@ export const loginSlice = createSlice({
       */
       
       reset: () => initialState
+      
     },
   });
 

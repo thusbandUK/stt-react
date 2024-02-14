@@ -2,7 +2,7 @@ import React from 'react';
 import { logoutRequest } from '../../api/loginCall';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { inputUsername } from "./loginSlice";
+import { inputUsername, reset } from "./loginSlice";
 
 const Logout = () => {
 
@@ -15,7 +15,7 @@ const Logout = () => {
         logoutResponse.then((res) => {
             if (res === 'You have successfully logged out'){
                 console.log('You have successfully logged out')
-                dispatch(inputUsername(""));
+                dispatch(reset());
                 navigate('/login');
             } else {
                 console.log('Problem with logging out, please try again');

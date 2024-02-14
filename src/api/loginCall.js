@@ -1,5 +1,30 @@
 import { API_ENDPOINT } from ".";
 
+export const sendEmail = async () => {
+  console.log('send email function triggered');
+  try {
+    const response = await fetch(`${API_ENDPOINT}/email`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true,
+        "Access-Control-Allow-Origin": true,      
+        "Access-Control-Allow-Headers": true, 
+        "Access-Control-Allow-Methods": true 
+    }
+    })
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    console.log(data);
+    return {success: data};
+  } catch (error){
+    console.log(error);
+    return {error: error};
+  }
+}
+
 export const signupRequest = async (email, username, password) => {
     console.log(API_ENDPOINT);
     console.log(username+password)
@@ -62,14 +87,18 @@ export const loginRequest = async (email, password) => {
     }
 })
   if (!response.ok) {
-      throw new Error('Network response was not ok');
+      const message = await response.json();
+      console.log(message.message);
+      console.log(Object.entries(message));
+
+      throw new Error(message.message);
     }
     const data = await response.json();
     console.log(data);
-    return data;
+    return {success: data};
   } catch (error) {
     console.log(error);
-    //return error;
+    return {error: error};
   }
 }
 
@@ -80,6 +109,10 @@ export const logoutRequest = async() => {
       method: "POST",      
       headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+            "Access-Control-Allow-Origin": true,      
+            "Access-Control-Allow-Headers": true, 
+            "Access-Control-Allow-Methods": true 
       }
     })
     if (response.ok){

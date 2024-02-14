@@ -12,13 +12,14 @@ const Welcome = () => {
     const {username, nextLesson, lessonPrice} = useSelector(state => state.login);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    
+    /*
     useEffect(() => {
         if (!username){
             return navigate("/login");
         }        
     })   
 
+    */
     useEffect(() => {
         const fetchData = async () => {
             const response = await welcomeDetails();
@@ -37,7 +38,7 @@ const Welcome = () => {
         }
         return console.log('no response');
         })
-    })
+    }, [dispatch])
 
     return (
         <div>

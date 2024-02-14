@@ -17,6 +17,7 @@ import Login from './Components/login/login';
 import Welcome from './Components/login/welcome';
 import Signup from './Components/login/signup';
 import Signin from './Components/login/signin';
+import Email from './Components/login/email';
 
   const router = createBrowserRouter(    
     createRoutesFromElements(   
@@ -37,6 +38,7 @@ import Signin from './Components/login/signin';
           
         </Route>
         <Route path="/welcome-user" element={<Welcome />} />
+        <Route path="/send-email" element={<Email />} />
       </Route>          
     )
   );
