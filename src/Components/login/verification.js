@@ -1,10 +1,23 @@
 import React from 'react';
+import { verifyEmail } from '../../api/loginCall';
 
 const Verification = () => {
 
-    const handleClick = () => {
+    const handleClick = async () => {
         console.log('send a new email button clicked');
+        const response = verifyEmail();
+        response.then((res) => {
+            if (res.success){
+                return console.log(res.success);
+            } 
+            if (res.error){
+                return console.log(res.error);
+            }
+            return console.log('something went wrong');
+
+        })
     }
+
 
     return (
         <div>

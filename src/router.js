@@ -18,6 +18,7 @@ import Welcome from './Components/login/welcome';
 import Signup from './Components/login/signup';
 import Signin from './Components/login/signin';
 import Verification from './Components/login/verification';
+import VerificationLanding from './Components/login/verificationLanding';
 import Email from './Components/login/email';
 
 
@@ -41,6 +42,7 @@ import Email from './Components/login/email';
         <Route path="/welcome-user" element={<Welcome />} />
         <Route path="/verification" element={<Verification />} />
         <Route path="/send-email" element={<Email />} />
+        <Route path="/verification-landing" element={<VerificationLanding />} />
       </Route>          
     )
   );
