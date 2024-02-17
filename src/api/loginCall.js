@@ -1,8 +1,8 @@
 import { API_ENDPOINT } from ".";
 
-export const verifyEmail = async () => {
+export const verifyEmail = async (id, token) => {
   try {
-    const response = await fetch(`${API_ENDPOINT}/verifyEmail`, {
+    const response = await fetch(`${API_ENDPOINT}/verifyEmail/${id}/${token}`, {
       method: 'GET',
       headers: {
         "Content-Type": "application/json",
@@ -13,14 +13,21 @@ export const verifyEmail = async () => {
       }
     })
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      const message = await response.json();
+      //console.log(message);
+      console.log('response was not okay');
+      console.log(message);
+      throw new Error(message.message);
+      //throw new Error('Network response was not ok');
+      //throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    //console.log(data);
+    console.log(data);
     return {success: data};
   } catch (error){
-    //console.log(error);
-    return {error: error};
+    console.log('error called');
+    console.log(error.message);
+    return {error: error.message};
   }
 }
 
@@ -40,14 +47,18 @@ export const sendEmail = async () => {
       }
     })
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      const message = await response.json();
+      //console.log(message);
+      
+      throw new Error(message.message);
+      //throw new Error('Network response was not ok');
     }
     const data = await response.json();
     console.log(data);
     return {success: data};
   } catch (error){
-    console.log(error);
-    return {error: error};
+    console.log(error.message);
+    return {error: error.message};
   }
 }
 
