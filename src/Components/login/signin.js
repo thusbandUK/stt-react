@@ -37,6 +37,12 @@ function Signin(){
         response.then((res) => {      
         if (res.error){
             console.log(res.error);
+            if (res.error.message.includes("verify")){
+                setLoginStatus(res.error.message);
+                setTimeout(() => {
+                    return navigate('/resend-email')
+                }, "5000")
+            }
             return setLoginStatus(res.error.message);
         }     
         if (res.success){

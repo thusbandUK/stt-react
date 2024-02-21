@@ -20,6 +20,7 @@ import Signin from './Components/login/signin';
 import Verification from './Components/login/verification';
 import VerificationLanding from './Components/login/verificationLanding';
 import Email from './Components/login/email';
+import Reset from './Components/login/reset';
 
 
   const router = createBrowserRouter(    
@@ -41,8 +42,9 @@ import Email from './Components/login/email';
         </Route>
         <Route path="/welcome-user" element={<Welcome />} />
         <Route path="/verification" element={<Verification />} />
-        <Route path="/send-email" element={<Email />} />
+        <Route path="/resend-email" element={<Email />} />
         <Route path="/verification-landing" element={<VerificationLanding />} />
+        <Route path="/reset-password" element={<Reset />} />
       </Route>          
     )
   );

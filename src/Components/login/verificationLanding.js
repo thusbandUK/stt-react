@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { verifyEmail } from '../../api/loginCall';
+import { useNavigate } from 'react-router-dom';
 
 const VerificationLanding = () => {
 
@@ -11,6 +12,8 @@ const VerificationLanding = () => {
       origin = url.searchParams.get("origin");
     }
     */
+    const [verificationStatus, setVerificationStatus] = useState(null);
+    const navigate = useNavigate();
 
     var url_string = window.location.href;
     var url = new URL(url_string);
@@ -26,21 +29,26 @@ const VerificationLanding = () => {
             const response = verifyEmail(id, token);
             response.then((res) => {
                 if (res.success){
-                    return console.log('email verified');
+                    //return console.log('email verified');
+                    return setVerificationStatus('email verified')
+                    //return navigate('/welcome-user');
                 }
                 if (res.error){
-                    return console.log(res.error);
+                    return setVerificationStatus(res.error)
+                    //return console.log(res.error);
                 }
-                return console.log('something went wrong');
+                return setVerificationStatus('something went wrong');
+                //return console.log('something went wrong');
             })
         } 
         sendEmail();
-    }, []);
+    }, [id, token]);
 
 
     return (
         <div>
             <p>Verification Landing Page</p>
+            <p>{verificationStatus}</p>
         </div>
     )
 }

@@ -4,6 +4,7 @@ import { inputUsername } from "./loginSlice";
 //import { loginRequest } from "../../api/loginCall";
 import Signin from "./signin";
 import Signup from "./signup";
+import { useNavigate } from 'react-router-dom';
 
 function Login(){
 
@@ -11,6 +12,7 @@ function Login(){
     const [loggedIn, setLoggedIn] = useState(false);
     const dispatch = useDispatch();
     const username = useSelector(state => state.login.username)
+    const navigate = useNavigate();
 
     /*
     const handleChange = (e) => {
@@ -34,11 +36,18 @@ function Login(){
         newUser ? setNewUser(false) : setNewUser(true);
     }
 
+    const handleNavigate = () => {
+        console.log('handleNavigate clicked');
+        return navigate('/reset-password');
+
+    }
+
     return(
         <div>
             { newUser ? <Signup /> : <Signin />}
 
             <button onClick={toggleUserType}>{ newUser ? "Sign in to an existing account" : "Sign up for a new account"}</button>
+            <button onClick={handleNavigate}>I've forgotten my password</button>
 
         </div>
     )

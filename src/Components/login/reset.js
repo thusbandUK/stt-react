@@ -1,53 +1,50 @@
 import React, { useState } from 'react';
-import { resendVerificationEmail } from '../../api/loginCall';
+import { resetPassword } from '../../api/loginCall';
 
+const Reset = () => {
 
-const Email = () => {
-
-    const [emailStatus, setEmailStatus] = useState("Click the button to send a test email")
+    const [resetStatus, setResetStatus] = useState("Enter your email then click to reset password.")
     const [email, setEmail] = useState(null);
 
-    const handleSubmit = async(event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        const response = resendVerificationEmail(email);
+        const response = resetPassword(email);
         response.then((res) => {      
             if (res.error){
                 console.log(res.error);
-                return setEmailStatus(res.error);
+                return setResetStatus(res.error);
             }     
             if (res.success){
                 console.log("email sent!");
-                return setEmailStatus("email sent!");
+                return setResetStatus("email sent!");
             }
             return console.log('looks like something went wrong');
 
         })
     }
 
+
     const handleEmailChange = (event) => {
         event.preventDefault();
         return setEmail(event.target.value);
     }
 
-
     return (
         <div>
-            <p>You have been redirected here because you need to verify your email. This might be because the link
-                we sent you did not arrive or because the link has expired. Please enter your email address below
-                to send a fresh verification link.
-            </p>
+            <h1>Reset password</h1>
             <form onSubmit={handleSubmit}>
                 <label for="email">
                     Email
                       <input type="email" name="email" id="email" value={email} onChange={handleEmailChange} />                
                 </label>
-                <button type="submit">Click to send new verification link</button>
+
+
+                <button type="submit">Reset password</button>
             </form>
-            
-            <p>{emailStatus}</p>
+            <p>{resetStatus}</p>
 
         </div>
     )
 }
 
-export default Email;
+export default Reset;
