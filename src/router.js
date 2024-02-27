@@ -21,6 +21,7 @@ import Verification from './Components/login/verification';
 import VerificationLanding from './Components/login/verificationLanding';
 import Email from './Components/login/email';
 import Reset from './Components/login/reset';
+import ResetLanding from './Components/login/resetLanding';
 
 
   const router = createBrowserRouter(    
@@ -45,6 +46,7 @@ import Reset from './Components/login/reset';
         <Route path="/resend-email" element={<Email />} />
         <Route path="/verification-landing" element={<VerificationLanding />} />
         <Route path="/reset-password" element={<Reset />} />
+        <Route path="/reset-landing" element={<ResetLanding />} />
       </Route>          
     )
   );
