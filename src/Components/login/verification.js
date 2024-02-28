@@ -1,11 +1,14 @@
 import React from 'react';
-import { verifyEmail } from '../../api/loginCall';
+import { resendVerificationEmail } from '../../api/loginCall';
+import { useSelector } from 'react-redux';
 
 const Verification = () => {
 
+    const email = useSelector(state => state.login.email);
+
     const handleClick = async () => {
         console.log('send a new email button clicked');
-        const response = verifyEmail();
+        const response = resendVerificationEmail(email);
         response.then((res) => {
             if (res.success){
                 return console.log(res.success);

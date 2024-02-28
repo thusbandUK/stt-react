@@ -100,37 +100,6 @@ export const enterNewPassword = async (id, token, password) => {
 
 }
 
-/*export const enterNewPassword = async (password) => {
-  console.log('send email function triggered');
-  try {
-    const response = await fetch(`${API_ENDPOINT}/enterPassword`, {
-      method: 'POST',
-      body: JSON.stringify({
-        password: password,        
-    }),
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true,
-        "Access-Control-Allow-Origin": true,      
-        "Access-Control-Allow-Headers": true, 
-        "Access-Control-Allow-Methods": true 
-      }
-    })
-    if (!response.ok) {
-      const message = await response.json();
-      //console.log(message);
-      
-      throw new Error(message.message);
-      //throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    console.log(data);
-    return {success: data};
-  } catch (error){
-    console.log(error.message);
-    return {error: error.message};
-  }
-}*/
 
 export const resetPassword = async (email) => {
   console.log('send email function triggered');
@@ -165,8 +134,8 @@ export const resetPassword = async (email) => {
 }
 
 export const signupRequest = async (email, username, password) => {
-    console.log(API_ENDPOINT);
-    console.log(username+password)
+    //console.log(API_ENDPOINT);
+    //console.log(username+password)
     try {
     const response = await fetch(`${API_ENDPOINT}/signup`, {
         method: "POST",

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { inputUsername } from "./loginSlice";
+
+import { inputEmail } from "./loginSlice";
 import { signupRequest } from "../../api/loginCall";
 import { useNavigate } from 'react-router-dom';
 
@@ -33,14 +34,14 @@ function Signup(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        /*let myUsername = document.getElementById('username');
-        let myPassword = document.getElementById('password');
-        let myEmail = document.getElementById('email');
-        console.log(myUsername.value);*/
-        //console.log(e.target.value);
+        
         const response = signupRequest(email, username, password);
+        setUsername(null);
+        setPassword(null);
+        setEmail(null);
         response.then((res) => {
             if (res.success){
+                dispatch(inputEmail(res.success.email));
                 return navigate('/verification');
             }
             if (res.error){
