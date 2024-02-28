@@ -43,8 +43,16 @@ const Welcome = () => {
     return (
         <div>
             <p>Welcome {username}</p>
-            <p>Your next lesson is at {nextLesson}</p>
-            <p>The lesson price is {lessonPrice}</p>
+            { nextLesson ?
+                <p>Your next lesson is at {nextLesson}</p>
+                :
+                null            
+            }
+            { lessonPrice ?
+                <p>The lesson price is {lessonPrice}</p>
+                :
+                <p>We have not yet agreed a lesson price</p>            
+            }
             <Logout />
             
 
