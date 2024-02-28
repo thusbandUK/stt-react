@@ -3,23 +3,15 @@ import { useEffect } from 'react';
 import { welcomeDetails } from '../../api/loggedIn';
 import { useDispatch, useSelector } from 'react-redux';
 import Logout from './logout';
-import { useNavigate } from 'react-router-dom';
 import { inputUsername, inputNextLesson, inputLessonPrice } from './loginSlice';
 
 
 const Welcome = () => {
 
     const {username, nextLesson, lessonPrice} = useSelector(state => state.login);
-    const navigate = useNavigate();
+    
     const dispatch = useDispatch();
-    /*
-    useEffect(() => {
-        if (!username){
-            return navigate("/login");
-        }        
-    })   
-
-    */
+    
     useEffect(() => {
         const fetchData = async () => {
             const response = await welcomeDetails();
@@ -27,20 +19,20 @@ const Welcome = () => {
         }
         const response = fetchData();
         response.then((res) => {
-            console.log(res);
+            
             if (res){
-            console.log(res.username);
+            
             dispatch(inputUsername(res.username));
             dispatch(inputNextLesson(res.next_lesson));
             dispatch(inputLessonPrice(res.price));
-            console.log(res);
+            
             return;
         }
         return console.log('no response');
         })
     }, [dispatch])
 
-    return (
+   return (
         <div>
             <p>Welcome {username}</p>
             { nextLesson ?
