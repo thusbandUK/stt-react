@@ -30,8 +30,11 @@ const VerificationLanding = () => {
             response.then((res) => {
                 if (res.success){
                     //return console.log('email verified');
-                    return setVerificationStatus('email verified')
+                    setVerificationStatus('Email verified. Please wait while you are redirected to login');
                     //return navigate('/welcome-user');
+                    return setTimeout(() => {
+                        return navigate('/login')
+                    }, "5000")
                 }
                 if (res.error){
                     return setVerificationStatus(res.error)

@@ -220,7 +220,8 @@ export const loginRequest = async (email, password) => {
 export const logoutRequest = async() => {
   try {
     const response = await fetch(`${API_ENDPOINT}/logout` , {
-      method: "POST",      
+      method: "GET",
+      credentials: "include",
       headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,

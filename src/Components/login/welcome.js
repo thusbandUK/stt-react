@@ -4,13 +4,16 @@ import { welcomeDetails } from '../../api/loggedIn';
 import { useDispatch, useSelector } from 'react-redux';
 import Logout from './logout';
 import { inputUsername, inputNextLesson, inputLessonPrice } from './loginSlice';
-
+import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Welcome = () => {
 
     const {username, nextLesson, lessonPrice} = useSelector(state => state.login);
     
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
     
     useEffect(() => {
         const fetchData = async () => {
@@ -32,6 +35,11 @@ const Welcome = () => {
         })
     }, [dispatch])
 
+    const loadDelete = (event) => {
+        event.preventDefault();
+        return navigate('/delete-account');
+    }
+
    return (
         <div>
             <p>Welcome {username}</p>
@@ -46,6 +54,16 @@ const Welcome = () => {
                 <p>We have not yet agreed a lesson price</p>            
             }
             <Logout />
+            <button>
+              <NavLink
+                to="/delete-account"
+                className="nav-link"
+              >
+                Delete account
+              </NavLink>
+            </button>
+            
+            
             
 
         </div>
