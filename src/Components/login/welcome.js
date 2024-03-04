@@ -23,15 +23,16 @@ const Welcome = () => {
         const response = fetchData();
         response.then((res) => {
             
-            if (res){
+            if (res.success){
             
-            dispatch(inputUsername(res.username));
-            dispatch(inputNextLesson(res.next_lesson));
-            dispatch(inputLessonPrice(res.price));
+            dispatch(inputUsername(res.success.username));
+            dispatch(inputNextLesson(res.success.next_lesson));
+            dispatch(inputLessonPrice(res.success.price));
             
             return;
         }
-        return console.log('no response');
+        console.log('no response');
+        return navigate('/login');
         })
     }, [dispatch])
 

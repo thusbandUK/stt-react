@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { deleteAccount } from '../../api/loggedIn';
-import { useDispatch, useSelector } from 'react-redux';
-import { inputUsername, reset } from "./loginSlice";
+import { useDispatch } from 'react-redux';
+import { reset } from "./loginSlice";
 import { useNavigate } from 'react-router-dom';
 
 const DeleteAccount = () => {

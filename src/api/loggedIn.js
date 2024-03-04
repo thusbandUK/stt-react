@@ -23,9 +23,10 @@ export const welcomeDetails = async () => {
     console.log('response was okay');
     const data = await response.json()
     //console.log(data);
-    return data;
+    return {success: data};
   } catch (error){
     console.log(error);
+    return {error: error};
   }
 
 }
