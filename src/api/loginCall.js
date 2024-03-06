@@ -187,7 +187,7 @@ export const loginRequest = async (email, password) => {
   const response = await fetch(`${API_ENDPOINT}/login`, {
     method: "POST",
     body: JSON.stringify({        
-        username: email,
+        email: email,
         password: password
     }),
     credentials: 'include',
@@ -243,4 +243,40 @@ export const logoutRequest = async() => {
     //console.log(error);
     return error;
   }
+  }
+
+  export const testPassword = async (username, email, password) => {
+    console.log('send email function triggered');
+    try {
+      const response = await fetch(`${API_ENDPOINT}/testPassword`, {
+        method: 'POST',
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          password: password,        
+      }),
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+          "Access-Control-Allow-Origin": true,      
+          "Access-Control-Allow-Headers": true, 
+          "Access-Control-Allow-Methods": true 
+        }
+      })
+      if (!response.ok) {
+        const message = await response.json();
+        //console.log(message);
+        console.log(message);
+        //throw new Error(message);
+        return {error: message};
+        
+        //throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      console.log(data);
+      return {success: data};
+    } catch (error){
+      console.log(Object.entries(error.message));
+      return {error: error};
+    }
   }

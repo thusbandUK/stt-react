@@ -36,9 +36,9 @@ function Signup(){
         e.preventDefault();
         
         const response = signupRequest(email, username, password);
-        setUsername(null);
+        /*setUsername(null);
         setPassword(null);
-        setEmail(null);
+        setEmail(null);*/
         response.then((res) => {
             if (res.success){
                 dispatch(inputEmail(res.success.email));
@@ -63,7 +63,7 @@ function Signup(){
             <form onSubmit={handleSubmit}>
                 <label for="email">
                     Email
-                      <input  name="email" id="email" onChange={handleEmailChange} value={email} />                
+                      <input type="email" name="email" id="email" onChange={handleEmailChange} value={email} />                
                 </label>
                 <label for="username">
                     Username
