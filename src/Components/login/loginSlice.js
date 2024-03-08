@@ -7,7 +7,13 @@ const initialState = {
     email: "",
     password: "",
     nextLesson: "",
-    lessonPrice: "",    
+    lessonPrice: "",
+    error: {
+      username: "",
+      password: "",
+      email: "",
+      general: ""
+    }
 }
 
 
@@ -28,6 +34,14 @@ export const loginSlice = createSlice({
       },
       inputLessonPrice: (state, action) => {
         state.lessonPrice = action.payload;
+      },
+      updateErrorConsole: (state, action) => {        
+        /*Object.keys(action.payload).map((item)=>{
+          return state.error[item] = action.payload[item];
+        }) */
+        action.payload.map((item) => {
+          return state.error[item.path] = item.msg;
+      })       
       },
       /*
       selectAnswer: (state, action) => {   
@@ -59,6 +73,7 @@ export const loginSlice = createSlice({
     inputEmail,
     inputNextLesson,
     inputLessonPrice,
+    updateErrorConsole,
     /*createMCQObject,    
     selectAnswer,
     updateAnswer,

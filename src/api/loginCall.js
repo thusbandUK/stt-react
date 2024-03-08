@@ -152,17 +152,19 @@ export const signupRequest = async (email, username, password) => {
             "Access-Control-Allow-Methods": true 
         }
     })
+    const responseData = await response.json();
     if (!response.ok) {
       console.log('response was not okay');
-      const message = await response.json();
+      //const message = await response.json();
       //console.log(message);
       
-      throw new Error(message.message);
+      //throw new Error(message.message);
+      return {error: responseData};
       //throw new Error('Network response was not ok');
     }
-    const data = await response.json();
-    console.log(data);
-    return {success: data};
+    //const data = await response.json();
+    console.log(responseData);
+    return {success: responseData};
   } catch (error) {
     console.log(error.message);
     //return error;

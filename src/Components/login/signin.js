@@ -56,6 +56,10 @@ function Signin(){
         })        
         
     }
+
+    const signupNew = () => {
+        return navigate('/login/signup/');
+    }
     
 
     return(
@@ -79,6 +83,7 @@ function Signin(){
 
 
             </form>
+            <button onClick={signupNew}>Sign up for a new account</button>
 
         </div>
     )

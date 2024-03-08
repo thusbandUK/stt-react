@@ -43,16 +43,17 @@ import Password from './Components/login/password';
         <Route path="/login" element={<Login />} >
           <Route path="/login/signup" element={<Signup />} />          
           <Route path="/login/signin" element={<Signin />} />          
+          <Route path="/login/welcome-user" element={<Welcome />} />
+          <Route path="/login/verification" element={<Verification />} />
+          <Route path="/login/resend-email" element={<Email />} />
+          <Route path="/login/verification-landing" element={<VerificationLanding />} />
+          <Route path="/login/reset-password" element={<Reset />} />
+          <Route path="/login/reset-landing" element={<ResetLanding />} />
+          <Route path="/login/delete-account" element={<DeleteAccount />} />
+          <Route path="/login/goodbye" element={<Goodbye />} />
+          <Route path="/login/password" element={<Password />} />
         </Route>
-        <Route path="/welcome-user" element={<Welcome />} />
-        <Route path="/verification" element={<Verification />} />
-        <Route path="/resend-email" element={<Email />} />
-        <Route path="/verification-landing" element={<VerificationLanding />} />
-        <Route path="/reset-password" element={<Reset />} />
-        <Route path="/reset-landing" element={<ResetLanding />} />
-        <Route path="/delete-account" element={<DeleteAccount />} />
-        <Route path="/goodbye" element={<Goodbye />} />
-        <Route path="/password" element={<Password />} />
+        
       </Route>          
     )
   );
