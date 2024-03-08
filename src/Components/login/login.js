@@ -48,7 +48,8 @@ function Login(){
     const [ password, setPassword ] = useState(null);
     const [ email, setEmail ] = useState(null);
 
-    const { loginStatus } = useSelector(state => state.login.error.general)
+    const { general: loginStatus } = useSelector(state => state.login.error)
+    console.log(loginStatus);
 
     //console.log(email);
     //console.log(password);

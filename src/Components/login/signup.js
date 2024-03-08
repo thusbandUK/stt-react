@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
-import { inputEmail, updateErrorConsole } from "./loginSlice";
+import { inputEmail, updateErrorConsole, reset } from "./loginSlice";
 import { signupRequest } from "../../api/loginCall";
 import { useNavigate } from 'react-router-dom';
 import Form from './form';
@@ -32,8 +32,10 @@ function Signup(props){
         /*setUsername(null);
         setPassword(null);
         setEmail(null);*/
+        dispatch(reset());
         
             if (response.success){
+                console.log(response.success);
                 //updates redux state object with email, in case verification email needs resending
                 dispatch(inputEmail(response.success.email));
                 //redirects user to verification
@@ -41,10 +43,10 @@ function Signup(props){
             }
             if (response.error){
                 //updates error values in redux state object
-                return dispatch(updateErrorConsole(response.error.message));
-            }
+                return dispatch(updateErrorConsole(response.error.messages));
+            }            
             //Updates general error value in redux state object
-            return updateErrorConsole([{general: 'You have been unable to signup'}]);
+            return dispatch(updateErrorConsole([{path: "general", msg: 'You have been unable to signup'}]));
     }    
 
     return(

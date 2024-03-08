@@ -1,62 +1,45 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import { inputUsername } from "./loginSlice";
+import React from "react";
+import { useDispatch } from 'react-redux';
+import { updateErrorConsole, reset } from "./loginSlice";
 import { loginRequest } from "../../api/loginCall";
 import { useNavigate } from 'react-router-dom';
+import Form from "./form";
+import { useOutletContext } from "react-router-dom";
 
 function Signin(){
 
-    const dispatch = useDispatch();
-    //const username = useSelector(state => state.login.username)
+    const dispatch = useDispatch();    
     const navigate = useNavigate();
-    //const useState = useState();
-    const [loginStatus, setLoginStatus] = useState(null);
-    //const [username, setUsername] = useState("username");
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
-        
-    const handleEmailChange = (event) => {
-        event.preventDefault();
-        return setEmail(event.target.value);
-    }
-
-    const handlePasswordChange = (event) => {
-        event.preventDefault();
-        return setPassword(event.target.value);
-    }
-
+    
+    //This is the Outlet element (react-router-doum) equivalent of props
+    const context = useOutletContext();
+    
+    //extracts the values input to the corresponding form fields from the state stored in the parent element Login
+    const { email, password} = context;        
+   
+    //handles login request
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        //let myPassword = document.getElementById('password');
-        //let myEmail = document.getElementById('email');
+        //calls login request POST api function
+        const response = await loginRequest(email, password);
+
+        //resets any error messages in the redux store
+        dispatch(reset());
         
-        //const response = loginRequest(myEmail.value, myPassword.value);
-        const response = loginRequest(email, password);
-        
-        response.then((res) => {      
-        if (res.error){
-            console.log(res.error);
-            if (res.error.message.includes("verify")){
-                setLoginStatus(res.error.message);
-                setTimeout(() => {
-                    return navigate('/resend-email')
-                }, "5000")
+            if (response.success){                
+                //redirects user to welcome user page
+                return navigate('/login/welcome-user');              
             }
-            return setLoginStatus(res.error.message);
-        }     
-        if (res.success){
-            
-            navigate('/welcome-user');
-            return;            
-        }
-        return setLoginStatus('Login request has failed');
-           
-        
-        })        
-        
+            if (response.error){
+                //updates error values in redux state object
+                return dispatch(updateErrorConsole(response.error.messages));
+            }            
+            //Updates general error value in redux state object
+            return dispatch(updateErrorConsole([{path: "general", msg: 'You have been unable to sign in'}]));                
     }
 
+    //redirects user to new user sign up page
     const signupNew = () => {
         return navigate('/login/signup/');
     }
@@ -64,22 +47,19 @@ function Signin(){
 
     return(
         <div>
-            <p>Sign in</p>
+            <h1>Sign in</h1>
+            <p>Enter your details below to sign in.</p>
             <form onSubmit={handleSubmit}>
-                <label for="email">
-                    Email
-                      <input type="email" name="email" id="email" value={email} onChange={handleEmailChange} />                
-                </label>
+                <Form
+                  loginProps={context}
+                  renderEmail={true}
+                  renderPassword={true}                
+                />
                 
-                <label for="password">
-                    Password
-                      <input type="password" name="password" id="password" value={password} onChange={handlePasswordChange}/>                
-                </label>
                 <button type="submit">
-                    login
-                
+                    login                
                 </button>
-                <p>{ loginStatus }</p>
+                
 
 
             </form>

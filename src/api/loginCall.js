@@ -1,16 +1,42 @@
 import { API_ENDPOINT } from ".";
 
+/*
+The below functions are configured to receive and pass on messages in the following format:
+
+success
+
+{message: [various depending on individual path]}
+
+errors (note object key messages *plural* since >1 message may be returned) 
+
+{messages:
+  [
+  {
+    path: [string: username, password, email OR general]
+    msg: [string: the message]
+  }
+]
+}
+
+the loginSlice reducer updateErrorConsole then updates the error object in the redux store
+
+This is the format in which error messages are passed by the express-validator dependency at the back end
+
+*/
+
+const headers = {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Credentials": true,
+  "Access-Control-Allow-Origin": true,      
+  "Access-Control-Allow-Headers": true, 
+  "Access-Control-Allow-Methods": true 
+};
+
 export const verifyEmail = async (id, token) => {
   try {
     const response = await fetch(`${API_ENDPOINT}/verifyEmail/${id}/${token}`, {
       method: 'GET',
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true,
-        "Access-Control-Allow-Origin": true,      
-        "Access-Control-Allow-Headers": true, 
-        "Access-Control-Allow-Methods": true 
-      }
+      headers: headers
     })
     if (!response.ok) {
       const message = await response.json();
@@ -41,13 +67,7 @@ export const resendVerificationEmail = async (email) => {
       body: JSON.stringify({
         email: email,        
     }),
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true,
-        "Access-Control-Allow-Origin": true,      
-        "Access-Control-Allow-Headers": true, 
-        "Access-Control-Allow-Methods": true 
-      }
+      headers: headers
     })
     if (!response.ok) {
       const message = await response.json();
@@ -75,13 +95,7 @@ export const enterNewPassword = async (id, token, password) => {
         token: token,
         password: password,
     }),
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true,
-        "Access-Control-Allow-Origin": true,      
-        "Access-Control-Allow-Headers": true, 
-        "Access-Control-Allow-Methods": true 
-      }
+      headers: headers
     })
     if (!response.ok) {
       const message = await response.json();
@@ -109,13 +123,7 @@ export const resetPassword = async (email) => {
       body: JSON.stringify({
         email: email,        
     }),
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true,
-        "Access-Control-Allow-Origin": true,      
-        "Access-Control-Allow-Headers": true, 
-        "Access-Control-Allow-Methods": true 
-      }
+      headers: headers
     })
     if (!response.ok) {
       const message = await response.json();
@@ -144,20 +152,14 @@ export const signupRequest = async (email, username, password) => {
             username: username,
             password: password
         }),
-        headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": true,
-            "Access-Control-Allow-Origin": true,      
-            "Access-Control-Allow-Headers": true, 
-            "Access-Control-Allow-Methods": true 
-        }
+        headers: headers
     })
     const responseData = await response.json();
     if (!response.ok) {
       console.log('response was not okay');
       //const message = await response.json();
       //console.log(message);
-      
+      console.log(responseData);
       //throw new Error(message.message);
       return {error: responseData};
       //throw new Error('Network response was not ok');
@@ -167,8 +169,8 @@ export const signupRequest = async (email, username, password) => {
     return {success: responseData};
   } catch (error) {
     console.log(error.message);
-    //return error;
-    return {error: error.message};
+    return error;
+    //return {error: error.message};
   }
     /*
     .then(res => {
@@ -194,27 +196,24 @@ export const loginRequest = async (email, password) => {
     }),
     credentials: 'include',
     mode: 'cors',
-    headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true,
-            "Access-Control-Allow-Origin": true,      
-            "Access-Control-Allow-Headers": true, 
-            "Access-Control-Allow-Methods": true 
-    }
+    headers: headers
 })
+const responseData = await response.json();
   if (!response.ok) {
-      const message = await response.json();
-      console.log(message.message);
-      console.log(Object.entries(message));
+      //const message = await response.json();
+      //console.log(message.message);
+      //console.log(Object.entries(message));
 
-      throw new Error(message.message);
+      return {error: responseData};
+      //throw new Error(message.message);
     }
-    const data = await response.json();
-    console.log(data);
-    return {success: data};
+    //const data = await response.json();
+    //console.log(data);
+    return {success: responseData};
   } catch (error) {
     console.log(error);
-    return {error: error};
+    //return {error: error};
+    return {messages: [{path: "general", msg: "Something went wrong with the server"}]};
   }
 }
 
@@ -224,13 +223,7 @@ export const logoutRequest = async() => {
     const response = await fetch(`${API_ENDPOINT}/logout` , {
       method: "GET",
       credentials: "include",
-      headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-            "Access-Control-Allow-Origin": true,      
-            "Access-Control-Allow-Headers": true, 
-            "Access-Control-Allow-Methods": true 
-      }
+      headers: headers
     })
     if (response.ok){
       return 'You have successfully logged out';
@@ -257,13 +250,7 @@ export const logoutRequest = async() => {
           email: email,
           password: password,        
       }),
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-          "Access-Control-Allow-Origin": true,      
-          "Access-Control-Allow-Headers": true, 
-          "Access-Control-Allow-Methods": true 
-        }
+        headers: headers
       })
       if (!response.ok) {
         const message = await response.json();
