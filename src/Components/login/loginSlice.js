@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
-
 const initialState = {
     username: "",
     email: "",
@@ -15,9 +13,6 @@ const initialState = {
       general: ""
     }
 }
-
-
-
 
 export const loginSlice = createSlice({
     name: "login",
@@ -35,36 +30,12 @@ export const loginSlice = createSlice({
       inputLessonPrice: (state, action) => {
         state.lessonPrice = action.payload;
       },
-      updateErrorConsole: (state, action) => {        
-        /*Object.keys(action.payload).map((item)=>{
-          return state.error[item] = action.payload[item];
-        }) */
+      updateErrorConsole: (state, action) => {                
         action.payload.map((item) => {
           return state.error[item.path] = item.msg;
       })       
-      },
-      /*
-      selectAnswer: (state, action) => {   
-             
-        state.answers[action.payload.question] = action.payload.answerAndId;            
-      },
-      updateAnswer: (state, action)=> {
-        if (!action.payload.index){
-          
-          state.answers[action.payload.question].splice(action.payload.index, 1);
-        } else {
-          
-          state.answers[action.payload.question].push(action.payload.answerAndId);
-        }
-        
-      },
-      identifierCodeToState: (state, action) => {
-        state.code = action.payload;        
       },      
-      */
-      
-      reset: () => initialState
-      
+      reset: () => initialState      
     },
   });
 
@@ -74,11 +45,6 @@ export const loginSlice = createSlice({
     inputNextLesson,
     inputLessonPrice,
     updateErrorConsole,
-    /*createMCQObject,    
-    selectAnswer,
-    updateAnswer,
-    identifierCodeToState,
-    displayFeedback,*/ 
     reset
  } = loginSlice.actions;
  

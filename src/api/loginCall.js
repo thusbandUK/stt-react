@@ -38,22 +38,14 @@ export const verifyEmail = async (id, token) => {
       method: 'GET',
       headers: headers
     })
-    if (!response.ok) {
-      const message = await response.json();
-      //console.log(message);
-      console.log('response was not okay');
-      console.log(message);
-      throw new Error(message.message);
-      //throw new Error('Network response was not ok');
-      //throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    console.log(data);
-    return {success: data};
+    const responseData = await response.json();
+    if (!response.ok) {      
+      return {error: responseData};      
+    }    
+    return {success: responseData};    
   } catch (error){
-    console.log('error called');
-    console.log(error.message);
-    return {error: error.message};
+    //returns general error message
+    return {messages: [{path: "general", msg: "Something went wrong with the server"}]};    
   }
 }
 
