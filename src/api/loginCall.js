@@ -40,12 +40,12 @@ export const verifyEmail = async (id, token) => {
     })
     const responseData = await response.json();
     if (!response.ok) {      
-      return {error: responseData};      
-    }    
-    return {success: responseData};    
+      return {error: responseData};
+    }
+    return {success: responseData};
   } catch (error){
     //returns general error message
-    return {messages: [{path: "general", msg: "Something went wrong with the server"}]};    
+    return {messages: [{path: "general", msg: "Something went wrong with the server"}]};
   }
 }
 
@@ -80,15 +80,21 @@ export const resendVerificationEmail = async (email) => {
 export const enterNewPassword = async (id, token, password) => {
   console.log('send email function triggered');
   try {
-    const response = await fetch(`${API_ENDPOINT}/reset-password-request`, {
+    const response = await fetch(`${API_ENDPOINT}/reset-password-request/${id}/${token}`, {
       method: 'POST',
       body: JSON.stringify({
-        id: id,
-        token: token,
+        //id: id,
+        //token: token,
         password: password,
     }),
       headers: headers
     })
+    const responseData = await response.json();
+    if (!response.ok) {      
+      return {error: responseData};
+    }
+    return {success: responseData};
+    /*
     if (!response.ok) {
       const message = await response.json();
       //console.log(message);
@@ -98,10 +104,11 @@ export const enterNewPassword = async (id, token, password) => {
     }
     const data = await response.json();
     console.log(data);
-    return {success: data};
+    return {success: data};*/
   } catch (error){
     console.log(error.message);
-    return {error: error.message};
+    //return {error: error.message};
+    return {messages: [{path: "general", msg: "Something went wrong with the server"}]};
   }
 
 }

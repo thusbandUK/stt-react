@@ -18,9 +18,9 @@ const VerificationLanding = () => {
     so use the "general" error category, which will want importing via context etc.
     
     */
-    const [verificationStatus, setVerificationStatus] = useState(null);
+    //const [verificationStatus, setVerificationStatus] = useState(null);
     const navigate = useNavigate();
-    const dispatch = useDispatch();   
+    const dispatch = useDispatch();
 
     var url_string = window.location.href;
     var url = new URL(url_string);

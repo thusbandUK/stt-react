@@ -1,63 +1,81 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { enterNewPassword } from '../../api/loginCall';
+import { useDispatch } from 'react-redux';
+import { updateErrorConsole, reset } from "./loginSlice";
+import { useNavigate } from 'react-router-dom';
+import Form from "./form";
+import { useOutletContext } from "react-router-dom";
 
 const ResetLanding = () => {
 
-    const [resetStatus, setResetStatus] = useState(null);
-    const [password, setPassword] = useState(null);
+    //This is the Outlet element (react-router-doum) equivalent of props
+    const context = useOutletContext();
+    
+    //extracts the values input to the corresponding form fields from the state stored in the parent element Login
+    const { password } = context;
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     var url_string = window.location.href;
     var url = new URL(url_string);
     var id = url.searchParams.get("id") ? url.searchParams.get("id") : null;
     var token = url.searchParams.get("token") ? url.searchParams.get("token") : null;
 
+    //general error message to be passed to redox store in various error outcomes
+    const generalError = [{path: "general", msg: 'Something went wrong. Please wait to be redirected to generate a new link.'}];
     
-
-    const handlePasswordChange = (event) => {
-        event.preventDefault();
-        return setPassword(event.target.value);
+    //redirects user, takes string argument and redirects user accordingly, also resets redox store login object
+    const redirect = (pathFragment) => {
+        return setTimeout(() => {
+            dispatch(reset());
+            return navigate(`/login/${pathFragment}`);
+        }, "5000")
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         //Checks for token and id
         if (!id || !token){
-            return console.log('something went wrong, please generate new link');
+            //general error logic
+            dispatch(updateErrorConsole(generalError));
+            //redirects user to send a new verification link after 5 seconds
+            return redirect("resend-email");
         }
-        const response = enterNewPassword(id, token, password);
-        response.then((res) => {
-            if (res.success){
-                //return console.log('ready for new password');
-                return setResetStatus('Enter new password')
-                //return navigate('/welcome-user');
+        const response = await enterNewPassword(id, token, password);
+        
+            if (response.success){
+                //updates redox store with general message
+                dispatch(updateErrorConsole([{path: "general", msg: 'Password updated. Please wait while you are redirected to login.'}]));
+                //sets browser to redirect to login page after 5 seconds
+                return redirect("signin"); 
             }
-            if (res.error){
-                return setResetStatus(res.error)
-                //return console.log(res.error);
+            if (response.error){
+                //update redox store with specific error messages
+                dispatch(updateErrorConsole(response.error.messages));
+                //sets browser to redirect to resend verification link after 5 seconds
+                return redirect("reset-password");
             }
-            return setResetStatus('something went wrong');
-            //return console.log('something went wrong');
-        })
-    } 
-
-    
+            //general error logic
+            dispatch(updateErrorConsole(generalError));
+            //redirects user to send a new verification link after 5 seconds
+            return redirect("reset-password");        
+    }    
 
     return (
         <div>
             <h1>Enter new password</h1>            
                 <div>
                     <form onSubmit={handleSubmit}>
-                      <label for="password">
-                        Password
-                        <input type="password" name="password" id="password" value={password} onChange={handlePasswordChange} />                
-                      </label>
+                      <Form
+                        loginProps={context}
+                        renderPassword={true}
+                      />                      
                       <button type="submit">Save new password</button>
                     </form>
-                </div>
-            <p>{resetStatus}</p>               
+                </div>            
         </div>
     )
 }
 
 export default ResetLanding;
-

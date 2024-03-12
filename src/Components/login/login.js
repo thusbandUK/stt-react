@@ -78,7 +78,7 @@ function Login(){
 
     const handleNavigate = () => {
         //console.log('handleNavigate clicked');
-        return navigate('/reset-password');
+        return navigate('/login/reset-password');
 
     }
 

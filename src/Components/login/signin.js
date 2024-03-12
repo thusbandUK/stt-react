@@ -15,7 +15,7 @@ function Signin(){
     const context = useOutletContext();
     
     //extracts the values input to the corresponding form fields from the state stored in the parent element Login
-    const { email, password} = context;        
+    const { email, password} = context;
    
     //handles login request
     const handleSubmit = async (e) => {
