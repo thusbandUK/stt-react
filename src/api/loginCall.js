@@ -61,7 +61,12 @@ export const resendVerificationEmail = async (email) => {
     }),
       headers: headers
     })
-    if (!response.ok) {
+    const responseData = await response.json();
+    if (!response.ok) {      
+      return {error: responseData};
+    }
+    return {success: responseData};
+    /*if (!response.ok) {
       const message = await response.json();
       //console.log(message);
       
@@ -70,10 +75,11 @@ export const resendVerificationEmail = async (email) => {
     }
     const data = await response.json();
     console.log(data);
-    return {success: data};
+    return {success: data};*/
   } catch (error){
     console.log(error.message);
-    return {error: error.message};
+    //return {error: error.message};
+    return {messages: [{path: "general", msg: "Something went wrong with the server"}]};
   }
 }
 
