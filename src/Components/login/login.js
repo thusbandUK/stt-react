@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Signin from "./signin";
 import Signup from "./signup";
 import { useNavigate, Outlet } from 'react-router-dom';
+import { reset } from "./loginSlice";
 
 /*
 Login
@@ -47,9 +48,8 @@ function Login(){
     const [ username, setUsername ] = useState(null);
     const [ password, setPassword ] = useState(null);
     const [ email, setEmail ] = useState(null);
-
     const { general: loginStatus } = useSelector(state => state.login.error)
-    console.log(loginStatus);
+    //console.log(loginStatus);
 
     //console.log(email);
     //console.log(password);
@@ -61,6 +61,14 @@ function Login(){
         dispatch(inputUsername({username: e.target.value}));
 
     }*/
+
+    //redirects user, takes string argument and redirects user accordingly, also resets redox store login object
+    const handleRedirect = (pathFragment) => {
+        return setTimeout(() => {
+            dispatch(reset());
+            return navigate(`/login/${pathFragment}`);
+        }, "5000")
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -107,6 +115,7 @@ function Login(){
                     handleUsernameChange: handleUsernameChange, 
                     handlePasswordChange: handlePasswordChange, 
                     handleEmailChange: handleEmailChange,
+                    handleRedirect: handleRedirect,
                     email: email,
                     username: username,
                     password: password
