@@ -57,7 +57,7 @@ const Welcome = () => {
             <Logout />
             <button>
               <NavLink
-                to="/delete-account"
+                to="/login/delete-account"
                 className="nav-link"
               >
                 Delete account

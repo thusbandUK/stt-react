@@ -1,36 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { deleteAccount } from '../../api/loggedIn';
-import { useDispatch } from 'react-redux';
-import { reset } from "./loginSlice";
 import { useNavigate } from 'react-router-dom';
+import Form from "./form";
+import { useOutletContext } from "react-router-dom";
+import { updateErrorConsole, reset } from "./loginSlice";
+import { useDispatch } from 'react-redux';
 
 const DeleteAccount = () => {
 
-    const [password, setPassword] = useState(null);
+    //This is the Outlet element (react-router-doum) equivalent of props
+    const context = useOutletContext();
+    
+    //extracts the values input to the corresponding form fields from the state stored in the parent element Login
+    const { password, handleRedirect } = context;
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = deleteAccount(password);
-        response.then((res) => {
-            if (res.success){
-                console.log(res.success)
-                dispatch(reset());
-                navigate('/goodbye');
-                return;
-            } else if (res.error) {
-                return console.log(res.error);
+        const response = await deleteAccount(password);
+        dispatch(reset());
+            if (response.success){
+                //updates redox store with success message
+                dispatch(updateErrorConsole([{path: "general", msg: 'Account deleted!'}]));
+                //redirects user in parent Login via context
+                return handleRedirect("goodbye");                
+            } else if (response.error) {
+                //updates the redox store with error messages
+                return dispatch(updateErrorConsole(response.error.messages));                
             }
-            return console.log('something went wrong');
-        })
-
-    }
-
-    const handlePasswordChange = (event) => {
-        event.preventDefault();
-        return setPassword(event.target.value);
-    }
+            //failsafe error message
+            return dispatch(updateErrorConsole([{path: "general", msg: 'looks like something went wrong'}]));
+    }   
 
     return (
         <div>
@@ -38,18 +40,14 @@ const DeleteAccount = () => {
             <p>Are you sure you want to delete your account. You will lose all saved settings.</p>
             <p>Enter your password below and click <em>delete</em> to delete your account</p>
             <form onSubmit={handleSubmit}>
-              <label for="password">
-                Password
-                <input type="password" name="password" id="password" value={password} onChange={handlePasswordChange} />                
-              </label>
-
-
-                <button type="submit">
-                  Delete
-                </button>
-
+              <Form
+                loginProps={context}
+                renderPassword={true}                  
+              />
+              <button type="submit">
+                Delete
+              </button>
             </form>
-
         </div>
     )
 }
