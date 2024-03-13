@@ -54,8 +54,11 @@ const ResetLanding = () => {
             if (response.error){
                 //update redox store with specific error messages
                 dispatch(updateErrorConsole(response.error.messages));
-                //sets browser to redirect to resend verification link after 5 seconds
-                return handleRedirect("reset-password");
+                if (response.error.messages[0].path === "general"){
+                    //sets browser to redirect to resend verification link after 5 seconds
+                    return handleRedirect("reset-password");
+                }
+                return;                
             }
             //general error logic
             dispatch(updateErrorConsole(generalError));
