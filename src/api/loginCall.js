@@ -65,17 +65,7 @@ export const resendVerificationEmail = async (email) => {
     if (!response.ok) {      
       return {error: responseData};
     }
-    return {success: responseData};
-    /*if (!response.ok) {
-      const message = await response.json();
-      //console.log(message);
-      
-      throw new Error(message.message);
-      //throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    console.log(data);
-    return {success: data};*/
+    return {success: responseData};    
   } catch (error){
     console.log(error.message);
     //return {error: error.message};
@@ -100,17 +90,7 @@ export const enterNewPassword = async (id, token, password) => {
       return {error: responseData};
     }
     return {success: responseData};
-    /*
-    if (!response.ok) {
-      const message = await response.json();
-      //console.log(message);
-      
-      throw new Error(message.message);
-      //throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    console.log(data);
-    return {success: data};*/
+    
   } catch (error){
     console.log(error.message);
     //return {error: error.message};
@@ -120,8 +100,7 @@ export const enterNewPassword = async (id, token, password) => {
 }
 
 
-export const resetPassword = async (email) => {
-  console.log('send email function triggered');
+export const resetPassword = async (email) => {  
   try {
     const response = await fetch(`${API_ENDPOINT}/resetPassword`, {
       method: 'POST',
@@ -130,19 +109,13 @@ export const resetPassword = async (email) => {
     }),
       headers: headers
     })
-    if (!response.ok) {
-      const message = await response.json();
-      //console.log(message);
-      
-      throw new Error(message.message);
-      //throw new Error('Network response was not ok');
+    const responseData = await response.json();
+    if (!response.ok) {      
+      return {error: responseData};
     }
-    const data = await response.json();
-    console.log(data);
-    return {success: data};
-  } catch (error){
-    console.log(error.message);
-    return {error: error.message};
+    return {success: responseData};
+  } catch (error){    
+    return {messages: [{path: "general", msg: "Something went wrong with the server"}]};
   }
 }
 

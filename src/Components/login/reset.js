@@ -1,48 +1,48 @@
 import React, { useState } from 'react';
 import { resetPassword } from '../../api/loginCall';
+import Form from "./form";
+import { useOutletContext } from "react-router-dom";
+import { updateErrorConsole, reset } from "./loginSlice";
+import { useDispatch } from 'react-redux';
 
 const Reset = () => {
 
-    const [resetStatus, setResetStatus] = useState("Enter your email then click to reset password.")
-    const [email, setEmail] = useState(null);
+    //This is the Outlet element (react-router-doum) equivalent of props
+    const context = useOutletContext();
+    
+    //extracts the values input to the corresponding form fields from the state stored in the parent element Login
+    const { email } = context;
 
-    const handleSubmit = (event) => {
+    const dispatch = useDispatch();
+
+    //handles API call to request a password reset
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = resetPassword(email);
-        response.then((res) => {      
-            if (res.error){
-                console.log(res.error);
-                return setResetStatus(res.error);
+        const response = await resetPassword(email);
+        //resets error message console
+        dispatch(reset());
+            if (response.error){
+                //updates the redox store with error messages
+                return dispatch(updateErrorConsole(response.error.messages));                
             }     
-            if (res.success){
-                console.log("email sent!");
-                return setResetStatus("email sent!");
+            if (response.success){
+                //updates redox store with success message
+                return dispatch(updateErrorConsole([{path: "general", msg: 'Email sent!'}]));
             }
-            return console.log('looks like something went wrong');
-
-        })
-    }
-
-
-    const handleEmailChange = (event) => {
-        event.preventDefault();
-        return setEmail(event.target.value);
-    }
+            //failsafe error message
+            return dispatch(updateErrorConsole([{path: "general", msg: 'looks like something went wrong'}]));        
+    }    
 
     return (
         <div>
             <h1>Reset password</h1>
             <form onSubmit={handleSubmit}>
-                <label for="email">
-                    Email
-                      <input type="email" name="email" id="email" value={email} onChange={handleEmailChange} />                
-                </label>
-
-
-                <button type="submit">Reset password</button>
+              <Form
+                loginProps={context}
+                renderEmail={true}                  
+              />
+              <button type="submit">Reset password</button>
             </form>
-            <p>{resetStatus}</p>
-
         </div>
     )
 }

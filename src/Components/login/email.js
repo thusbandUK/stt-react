@@ -27,10 +27,10 @@ const Email = () => {
             }     
             if (response.success){
                 //updates redox store with success message
-                return dispatch(updateErrorConsole([{path: "general", msg: 'Email sent!'}]));                
+                return dispatch(updateErrorConsole([{path: "general", msg: 'Email sent!'}]));
             }
             //failsafe error message
-            return dispatch(updateErrorConsole([{path: "general", msg: 'looks like something went wrong'}]));            
+            return dispatch(updateErrorConsole([{path: "general", msg: 'looks like something went wrong'}]));
     }
 
     return (
