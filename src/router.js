@@ -24,7 +24,7 @@ import Reset from './Components/login/reset';
 import ResetLanding from './Components/login/resetLanding';
 import DeleteAccount from './Components/login/deleteAccount';
 import Goodbye from './Components/login/goodbye';
-import Password from './Components/login/password';
+import LoggedOut from './Components/login/loggedOut';
 
 
   const router = createBrowserRouter(    
@@ -51,12 +51,10 @@ import Password from './Components/login/password';
           <Route path="/login/reset-landing" element={<ResetLanding />} />
           <Route path="/login/delete-account" element={<DeleteAccount />} />
           <Route path="/login/goodbye" element={<Goodbye />} />
-          <Route path="/login/password" element={<Password />} />
-        </Route>
-        
+          <Route path="/login/logged-out" element={<LoggedOut />} />
+        </Route>        
       </Route>          
     )
   );
 
-  export default router;  
-
+  export default router;

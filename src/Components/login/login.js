@@ -1,9 +1,5 @@
 import React, {useState} from "react";
 import { useSelector, useDispatch } from 'react-redux';
-
-//import { loginRequest } from "../../api/loginCall";
-import Signin from "./signin";
-import Signup from "./signup";
 import { useNavigate, Outlet } from 'react-router-dom';
 import { reset } from "./loginSlice";
 
@@ -21,7 +17,7 @@ This is the parent component for anything relating to logging in, including:
 
 Login holds a state outside of the redux state object for sensitive details, namely username, password and email (although
     username and email are both passed to the redux state upon authentication but never password)
-These are passed via functions handleEmailChange etc below, which are passed via react-redux context function (analagously to
+These are passed via functions handleEmailChange etc below, which are passed via react-router-dom context function (analagously to
     props) to child elements, eg: signup, signin etc. As Login also holds the values stored for email, username and password,
     they are also passed via Context to the child elements
 
@@ -33,62 +29,24 @@ These are passed via functions handleEmailChange etc below, which are passed via
     there are four kinds of error message passed to the redux store: email, username, password, general. The first three are rendered
     directly below the corresponding form fields in the Form element, while general is passed in this the login element
 
-
-
 */
-
 
 function Login(){
 
-    const [newUser, setNewUser] = useState();
-    const [loggedIn, setLoggedIn] = useState(false);
-    const dispatch = useDispatch();
-    //const username = useSelector(state => state.login.username)
+    const dispatch = useDispatch();    
     const navigate = useNavigate();
     const [ username, setUsername ] = useState(null);
     const [ password, setPassword ] = useState(null);
     const [ email, setEmail ] = useState(null);
     const { general: loginStatus } = useSelector(state => state.login.error)
-    //console.log(loginStatus);
-
-    //console.log(email);
-    //console.log(password);
-
-    /*
-    const handleChange = (e) => {
-        e.preventDefault();
-        //console.log(e.target.value);
-        dispatch(inputUsername({username: e.target.value}));
-
-    }*/
-
+    
     //redirects user, takes string argument and redirects user accordingly, also resets redox store login object
     const handleRedirect = (pathFragment) => {
         return setTimeout(() => {
             dispatch(reset());
             return navigate(`/login/${pathFragment}`);
         }, "5000")
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        let myUsername = document.getElementById('username');
-        let myPassword = document.getElementById('password');
-        let myEmail = document.getElementById('email');
-        //console.log(myUsername.value);
-        //console.log(e.target.value);
-        //loginRequest(myEmail.value, myUsername.value, myPassword.value);
-    }
-
-    const toggleUserType = () => {
-        newUser ? setNewUser(false) : setNewUser(true);
-    }
-
-    const handleNavigate = () => {
-        //console.log('handleNavigate clicked');
-        return navigate('/login/reset-password');
-
-    }
+    }    
 
     const handleEmailChange = (event) => {
         event.preventDefault();
@@ -105,10 +63,10 @@ function Login(){
         return setPassword(event.target.value);
     }
 
-
     return(
         <div>
-            
+            {/*This is the Outlet, which renders different children depending on the link, the context is the Outlet
+            equivalent of props */}
             <Outlet              
               context={
                 {
@@ -116,17 +74,18 @@ function Login(){
                     handlePasswordChange: handlePasswordChange, 
                     handleEmailChange: handleEmailChange,
                     handleRedirect: handleRedirect,
+                    setUsername: setUsername,
+                    setEmail: setEmail,
+                    setPassword: setPassword,
                     email: email,
                     username: username,
                     password: password
                 }
                 }
             />
+            {/*This is an important element that prints general error messages to the screen for all child elements,
+            incl signin, signup, logout etc.*/}
             <p>{loginStatus}</p>
-
-            
-            <button onClick={handleNavigate}>I've forgotten my password</button>
-
         </div>
     )
 }

@@ -1,6 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+/*
+This is the element that selectively renders username, email and password form fields, depending on which fields have
+been activated via props (renderEmail etc). It updates values in the grandparent Login state via props and Context
+*/
+
 const Form = (props) => {
 
     //extracts functions and values for form fields from parent parent component login

@@ -5,7 +5,7 @@ The below functions are configured to receive and pass on messages in the follow
 
 success
 
-{message: [various depending on individual path]}
+{message: [various *string* depending on individual path]}
 
 errors (note object key messages *plural* since >1 message may be returned) 
 
@@ -24,6 +24,8 @@ This is the format in which error messages are passed by the express-validator d
 
 */
 
+//common headers
+
 const headers = {
   "Content-Type": "application/json",
   "Access-Control-Allow-Credentials": true,
@@ -31,6 +33,78 @@ const headers = {
   "Access-Control-Allow-Headers": true, 
   "Access-Control-Allow-Methods": true 
 };
+
+//accepts email, username and password to sign up new user for new account
+
+export const signupRequest = async (email, username, password) => {    
+  try {
+  const response = await fetch(`${API_ENDPOINT}/signup`, {
+      method: "POST",
+      body: JSON.stringify({
+          email: email,
+          username: username,
+          password: password
+      }),
+      headers: headers
+  })
+  const responseData = await response.json();
+  if (!response.ok) {      
+    return {error: responseData};      
+  }    
+  return {success: responseData};
+} catch (error) {    
+  return error;    
+}
+}
+
+//accepts email and password to sign user in to existing account
+
+export const loginRequest = async (email, password) => {  
+try {
+const response = await fetch(`${API_ENDPOINT}/login`, {
+  method: "POST",
+  body: JSON.stringify({        
+      email: email,
+      password: password
+  }),
+  credentials: 'include',
+  mode: 'cors',
+  headers: headers
+})
+const responseData = await response.json();
+if (!response.ok) {
+    return {error: responseData};
+  }
+  return {success: responseData};
+} catch (error) {
+  //returns general error message
+  return {messages: [{path: "general", msg: "Something went wrong with the server"}]};
+}
+}
+
+//resends verification email, if no email arrived following sign up, to initiate email verification process
+
+export const resendVerificationEmail = async (email) => {  
+  try {
+    const response = await fetch(`${API_ENDPOINT}/resendVerificationEmail`, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,        
+    }),
+      headers: headers
+    })
+    const responseData = await response.json();
+    if (!response.ok) {      
+      return {error: responseData};
+    }
+    return {success: responseData};    
+  } catch (error){    
+    //sends generic error message
+    return {messages: [{path: "general", msg: "Something went wrong with the server"}]};
+  }
+}
+
+//accepts id and token harvested from email link to finalise verification of email process
 
 export const verifyEmail = async (id, token) => {
   try {
@@ -49,56 +123,7 @@ export const verifyEmail = async (id, token) => {
   }
 }
 
-
-
-export const resendVerificationEmail = async (email) => {
-  console.log('send email function triggered');
-  try {
-    const response = await fetch(`${API_ENDPOINT}/resendVerificationEmail`, {
-      method: 'POST',
-      body: JSON.stringify({
-        email: email,        
-    }),
-      headers: headers
-    })
-    const responseData = await response.json();
-    if (!response.ok) {      
-      return {error: responseData};
-    }
-    return {success: responseData};    
-  } catch (error){
-    console.log(error.message);
-    //return {error: error.message};
-    return {messages: [{path: "general", msg: "Something went wrong with the server"}]};
-  }
-}
-
-export const enterNewPassword = async (id, token, password) => {
-  console.log('send email function triggered');
-  try {
-    const response = await fetch(`${API_ENDPOINT}/reset-password-request/${id}/${token}`, {
-      method: 'POST',
-      body: JSON.stringify({
-        //id: id,
-        //token: token,
-        password: password,
-    }),
-      headers: headers
-    })
-    const responseData = await response.json();
-    if (!response.ok) {      
-      return {error: responseData};
-    }
-    return {success: responseData};
-    
-  } catch (error){
-    console.log(error.message);
-    //return {error: error.message};
-    return {messages: [{path: "general", msg: "Something went wrong with the server"}]};
-  }
-
-}
-
+//sends email to initiate password reset process
 
 export const resetPassword = async (email) => {  
   try {
@@ -119,82 +144,30 @@ export const resetPassword = async (email) => {
   }
 }
 
-export const signupRequest = async (email, username, password) => {
-    //console.log(API_ENDPOINT);
-    //console.log(username+password)
-    try {
-    const response = await fetch(`${API_ENDPOINT}/signup`, {
-        method: "POST",
-        body: JSON.stringify({
-            email: email,
-            username: username,
-            password: password
-        }),
-        headers: headers
+//transfers harvested id and token from incoming link and sends new password to finalise reset password process
+
+export const enterNewPassword = async (id, token, password) => {
+  try {
+    const response = await fetch(`${API_ENDPOINT}/reset-password-request/${id}/${token}`, {
+      method: 'POST',
+      body: JSON.stringify({        
+        password: password,
+    }),
+      headers: headers
     })
     const responseData = await response.json();
-    if (!response.ok) {
-      console.log('response was not okay');
-      //const message = await response.json();
-      //console.log(message);
-      console.log(responseData);
-      //throw new Error(message.message);
+    if (!response.ok) {      
       return {error: responseData};
-      //throw new Error('Network response was not ok');
     }
-    //const data = await response.json();
-    console.log(responseData);
-    return {success: responseData};
-  } catch (error) {
-    console.log(error.message);
-    return error;
-    //return {error: error.message};
-  }
-    /*
-    .then(res => {
-      if(res.ok) {
-        return console.log('well done, you have logged in');
-        //res.json()
-      }
-      return res.text().then(text => console.log(text));
-      //return res.text().then(text => {throw new Error(text)})
-    })*/
-    
-}
-
-export const loginRequest = async (email, password) => {
-  console.log('login request called');
-  //const response = await 
-  try {
-  const response = await fetch(`${API_ENDPOINT}/login`, {
-    method: "POST",
-    body: JSON.stringify({        
-        email: email,
-        password: password
-    }),
-    credentials: 'include',
-    mode: 'cors',
-    headers: headers
-})
-const responseData = await response.json();
-  if (!response.ok) {
-      //const message = await response.json();
-      //console.log(message.message);
-      //console.log(Object.entries(message));
-
-      return {error: responseData};
-      //throw new Error(message.message);
-    }
-    //const data = await response.json();
-    //console.log(data);
-    return {success: responseData};
-  } catch (error) {
-    console.log(error);
-    //return {error: error};
+    return {success: responseData};    
+  } catch (error){
+    //returns general error message
     return {messages: [{path: "general", msg: "Something went wrong with the server"}]};
   }
+
 }
 
+//logout route
 
 export const logoutRequest = async() => {
   try {
@@ -203,47 +176,8 @@ export const logoutRequest = async() => {
       credentials: "include",
       headers: headers
     })
-    if (response.ok){
-      return 'You have successfully logged out';
-    }
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    //const data = await response.json();
-    //console.log(response.status);
-    //return data;
-  } catch (error) {
-    //console.log(error);
+    return response; 
+  } catch (error) {    
     return error;
   }
-  }
-
-  export const testPassword = async (username, email, password) => {
-    console.log('send email function triggered');
-    try {
-      const response = await fetch(`${API_ENDPOINT}/testPassword`, {
-        method: 'POST',
-        body: JSON.stringify({
-          username: username,
-          email: email,
-          password: password,        
-      }),
-        headers: headers
-      })
-      if (!response.ok) {
-        const message = await response.json();
-        //console.log(message);
-        console.log(message);
-        //throw new Error(message);
-        return {error: message};
-        
-        //throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      console.log(data);
-      return {success: data};
-    } catch (error){
-      console.log(Object.entries(error.message));
-      return {error: error};
-    }
-  }
+}  

@@ -1,26 +1,35 @@
 import React from 'react';
 import { resendVerificationEmail } from '../../api/loginCall';
 import { useSelector } from 'react-redux';
+import { updateErrorConsole, reset } from "./loginSlice";
+import { useDispatch } from 'react-redux';
+
+/*
+User is automatically directed to this element when their details have been accepted during sign up.
+The signup process logs the user's email to the redux store, enabling the user to click the button
+to resend a verification email, if necessary, rather than reentering their email.
+*/
 
 const Verification = () => {
 
+    const dispatch = useDispatch();
+
     const email = useSelector(state => state.login.email);
 
+    //handles API call to resendVerificationEmail
     const handleClick = async () => {
-        console.log('send a new email button clicked');
-        const response = resendVerificationEmail(email);
-        response.then((res) => {
-            if (res.success){
-                return console.log(res.success);
-            } 
-            if (res.error){
-                return console.log(res.error);
+        const response = await resendVerificationEmail(email);
+            if (response.success){
+                //updates redox store with success message
+                return dispatch(updateErrorConsole([{path: "general", msg: 'Email sent!'}]));
             }
-            return console.log('something went wrong');
-
-        })
+            if (response.error){
+                //updates the redox store with error messages
+                return dispatch(updateErrorConsole(response.error.messages));
+            }
+            //failsafe error message
+            return dispatch(updateErrorConsole([{path: "general", msg: 'looks like something went wrong'}]));        
     }
-
 
     return (
         <div>

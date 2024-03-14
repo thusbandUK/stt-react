@@ -8,8 +8,9 @@ const headers = {
   "Access-Control-Allow-Methods": true 
 };
 
-export const welcomeDetails = async () => {
-    console.log('welcome details called');
+//fetches welcome details
+
+export const welcomeDetails = async () => {    
     try {
     const response = await fetch(`${API_ENDPOINT}/welcome`, {
         method: "GET",        
@@ -27,6 +28,8 @@ export const welcomeDetails = async () => {
     return {error: error};
   }
 }
+
+//enables user to delete account
 
 export const deleteAccount = async (password) => {
   try {

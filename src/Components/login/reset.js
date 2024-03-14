@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { resetPassword } from '../../api/loginCall';
 import Form from "./form";
 import { useOutletContext } from "react-router-dom";
 import { updateErrorConsole, reset } from "./loginSlice";
 import { useDispatch } from 'react-redux';
+
+/*
+This is element from which user can *request* a password reset by inputting email address
+*/
 
 const Reset = () => {
 
@@ -11,7 +15,7 @@ const Reset = () => {
     const context = useOutletContext();
     
     //extracts the values input to the corresponding form fields from the state stored in the parent element Login
-    const { email } = context;
+    const { email, setEmail } = context;
 
     const dispatch = useDispatch();
 
@@ -26,6 +30,8 @@ const Reset = () => {
                 return dispatch(updateErrorConsole(response.error.messages));                
             }     
             if (response.success){
+                //resets email value in parent element Login state to null
+                setEmail("")
                 //updates redox store with success message
                 return dispatch(updateErrorConsole([{path: "general", msg: 'Email sent!'}]));
             }

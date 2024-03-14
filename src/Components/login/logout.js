@@ -1,26 +1,29 @@
 import React from 'react';
 import { logoutRequest } from '../../api/loginCall';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { inputUsername, reset } from "./loginSlice";
+import { useDispatch } from 'react-redux';
+import { updateErrorConsole, reset } from "./loginSlice";
+import { useOutletContext } from "react-router-dom";
+
+//logs out user, successful logout redirects to logged-out page
 
 const Logout = () => {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    
+    //This is the Outlet element (react-router-doum) equivalent of props
+    const context = useOutletContext();
+
+    //extracts the values input to the corresponding form fields from the state stored in the parent element Login
+    const { handleRedirect } = context;
 
     const handleLogout = async() => {
-        console.log('logout button clicked');
-        const logoutResponse = logoutRequest();
-        logoutResponse.then((res) => {
-            if (res === 'You have successfully logged out'){
-                console.log('You have successfully logged out')
-                dispatch(reset());
-                navigate('/login');
-            } else {
-                console.log('Problem with logging out, please try again');
-            }
-        })
+        const logoutResponse = await logoutRequest();
+        if (logoutResponse.ok){
+            dispatch(reset());
+            return handleRedirect("logged-out")
+        } else {
+            return dispatch(updateErrorConsole({messages: [{path: "general", msg: "Hmm, something went wrong. Try clicking the logout button again."}]}))
+        }        
     }
 
     return(

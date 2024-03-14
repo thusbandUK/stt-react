@@ -1,5 +1,7 @@
 import React from 'react';
 
+//Element to which user is redirected upon successful deletion of account
+
 const Goodbye = () => {
 
     return (

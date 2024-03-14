@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { resendVerificationEmail } from '../../api/loginCall';
 import Form from "./form";
 import { useOutletContext } from "react-router-dom";
 import { updateErrorConsole, reset } from "./loginSlice";
 import { useDispatch } from 'react-redux';
 
+/*
+This is the element to which users are redirected if they have tried to login but found they haven't yet verified their email address.
+Unlike the similar element "verification", here users are required to re-enter their email address.
+*/
 
 const Email = () => {
 
@@ -12,7 +16,7 @@ const Email = () => {
     const context = useOutletContext();
     
     //extracts the values input to the corresponding form fields from the state stored in the parent element Login
-    const { email } = context;
+    const { email, setEmail } = context;
 
     const dispatch = useDispatch();
 
@@ -20,12 +24,15 @@ const Email = () => {
     const handleSubmit = async(event) => {
         event.preventDefault();
         const response = await resendVerificationEmail(email);
+        //resets error message console in redox store
             dispatch(reset());
             if (response.error){
                 //updates the redox store with error messages
                 return dispatch(updateErrorConsole(response.error.messages));
             }     
             if (response.success){
+                //resets email in parent element Login state
+                setEmail("");
                 //updates redox store with success message
                 return dispatch(updateErrorConsole([{path: "general", msg: 'Email sent!'}]));
             }

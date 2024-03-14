@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { verifyEmail } from '../../api/loginCall';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { updateErrorConsole, reset } from "./loginSlice";
 
+/*
+This element receives the incoming token and id from the params in the url link used to access it then checks them against the
+values in the database, activating the user if they match
+*/
 
 const VerificationLanding = () => {
-
-    /*
-    so, you'll want to link things with the general apparatus. basically, they only need one message and it's  a 
-    general message which says: link corrupted, please verify your email address (wait to be redirected) and
-    redirects
-    AT THE BACKEND it's a useful error to log because it can only really happen if someone tampers with the link
-    so log whether the token and or the id is corrupted
-    AT THE FRONTEND
-    link corrupted, the end
-    so use the "general" error category, which will want importing via context etc.
     
-    */
-    //const [verificationStatus, setVerificationStatus] = useState(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    //harvests params id and token from incoming url link
     var url_string = window.location.href;
     var url = new URL(url_string);
     var id = url.searchParams.get("id") ? url.searchParams.get("id") : null;
@@ -63,18 +56,16 @@ const VerificationLanding = () => {
                 //general error logic
                 dispatch(updateErrorConsole(generalError));
                 //redirects user to send a new verification link after 5 seconds
-                return redirect("resend-email");
-            
+                return redirect("resend-email");            
         }
         //calls above sendEmail function
         sendEmail();
     }, [id, token]);
 
-
     return (
         <div>
-            <p>Verification Landing Page</p>
-            
+            <h1>Verification Landing Page</h1>
+            <p>Please wait while your email verification is confirmed.</p>            
         </div>
     )
 }
