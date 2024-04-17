@@ -25,6 +25,7 @@ import ResetLanding from './Components/login/resetLanding';
 import DeleteAccount from './Components/login/deleteAccount';
 import Goodbye from './Components/login/goodbye';
 import LoggedOut from './Components/login/loggedOut';
+import Calendar from './Components/scheduling/makeCalendarTest';
 
 
   const router = createBrowserRouter(    
@@ -52,7 +53,8 @@ import LoggedOut from './Components/login/loggedOut';
           <Route path="/login/delete-account" element={<DeleteAccount />} />
           <Route path="/login/goodbye" element={<Goodbye />} />
           <Route path="/login/logged-out" element={<LoggedOut />} />
-        </Route>        
+        </Route>
+        <Route path="/calendar" element={<Calendar />} />
       </Route>          
     )
   );

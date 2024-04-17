@@ -37,8 +37,8 @@ function Login(){
     const navigate = useNavigate();
     const [ username, setUsername ] = useState(null);
     const [ password, setPassword ] = useState(null);
-    const [ email, setEmail ] = useState(null);
-    const { general: loginStatus } = useSelector(state => state.login.error)
+    const [ email, setEmail ] = useState(null);    
+    const { general: loginStatus } = useSelector(state => state.login.error);
     
     //redirects user, takes string argument and redirects user accordingly, also resets redox store login object
     const handleRedirect = (pathFragment) => {
