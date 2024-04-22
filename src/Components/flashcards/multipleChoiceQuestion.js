@@ -12,7 +12,7 @@ const MultipleChoiceQuestion = (props) => {
                     <legend>{question}</legend>
                     
                    {Object.keys(multipleChoiceResponses).map((MCQ) => (
-                     <div>
+                     <div onClick={props.handleQuestionClick} id={MCQ}>
                         <p>{MCQ}</p>
                        <input onChange={props.onValueChange} type="radio" id={MCQ} name={name} value={MCQ} />
                        <label for={MCQ}>{multipleChoiceResponses[MCQ]}</label>

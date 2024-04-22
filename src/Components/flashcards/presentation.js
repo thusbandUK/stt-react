@@ -73,9 +73,10 @@ const Presentation = () => {
         return askQuestion();
     }
 
-    const answerQuestion = () => {
+    const answerQuestion = (suggestedAnswer) => {
         const correctAnswer = flashcards[flashcard].correctMCQ;
-        if (submittedValue === correctAnswer){
+        console.log(`Submitted value called via answerQuestion: ${suggestedAnswer}`);
+        if (suggestedAnswer === correctAnswer){
             setResponse("You got it right. Woop!!");
             let updatedArray = correctlyAnsweredQuestions;
             updatedArray.push(flashcard);
@@ -91,10 +92,15 @@ const Presentation = () => {
             return askQuestion();
         }, [500]);
     }
-    
+
     const onValueChange = (event) => {
         //console.log(event);
-        return setSubmittedValue(event.target.value);
+        //console.log(event.target.value);
+        /**/setSubmittedValue(event.target.value);
+        //console.log(`submitted value passed via onValueChange: ${submittedValue}`)
+        return answerQuestion(event.target.value);
+        
+        //return setSubmittedValue(event.target.value);
     }
 
     /*
@@ -121,7 +127,12 @@ const Presentation = () => {
         return setRecentQuestions(updatedRecentQuestions);
     }
 
-    
+    const handleQuestionClick = (event) => {
+        
+        console.log(`the event target value for new handleQuestionClick function: ${event.target.id}`);
+        //console.log(event)
+        return answerQuestion(event.target.id);
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -153,7 +164,8 @@ const Presentation = () => {
             <MultipleChoiceQuestion 
             question={flashcards[flashcard]}
             submitAnswer={handleSubmit}
-            onValueChange={onValueChange}            
+            onValueChange={onValueChange}
+            handleQuestionClick={handleQuestionClick}
             />              
             : null
             }
