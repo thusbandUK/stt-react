@@ -1,18 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { flashcards } from './flashcardEngine';
 import MultipleChoiceQuestion from './multipleChoiceQuestion';
+import WrittenFlashcard from './writtenFlashcard';
 
 const Presentation = () => {
 
+    //for MCQ
     const [flashcard, setFlashcard] = useState(null);
-    const [currentQuestion, setCurrentQuestion] = useState(null);
+    //for written response
+    const [writtenFlashcard, setWrittenFlashcard] = useState(null);
+
     const [response, setResponse] = useState(null);
-    const [submittedValue, setSubmittedValue] = useState(null);
     const [correctlyAnsweredQuestions, setCorrectlyAnsweredQuestions] = useState([]);
+    const [correctlyAnsweredWrittenQuestions, setCorrectlyAnsweredWrittenQuestions] = useState([]);
     const [count, setCount] = useState(1);
     const [recentQuestions, setRecentQuestions] = useState([]);
     const [startTime, setStartTime] = useState(null);
-    const [finishTime, setFinishTime] = useState(null);
+    const [completeSet, setCompleteSet] = useState(Object.keys(flashcards))
+    const [enteredValue, setEnteredValue] = useState(null);
+    const [writtenStage, setWrittenStage] = useState("response");
+    
+    function writtenResponse(){
+        
+        let remainingWrittenQuestions = [];
+
+        //filters the correctlyAnsweredQuestions state array and pushes any questions yet to be correctly answered to 
+        //the remaining questions array
+        completeSet.forEach((x)=>{
+            if (!correctlyAnsweredWrittenQuestions.includes(x)){
+                return remainingWrittenQuestions.push(x);
+            }
+        })
+        //if there are no remaining questions, the time to complete the set is computed and delivered as part of a success message
+        /*
+        [ADD CODE HERE ABOUT THE TOTAL MARKS FOR WRITTEN RESPONSE]
+        */
+        if (remainingWrittenQuestions.length === 0){
+            const finishingTime = Date.now();
+            const timeElapsed = (finishingTime - startTime)/1000;
+            return setResponse(`Great job! ${completeSet.length} multiple choice questions answered correctly in ${count} attempts and in ${timeElapsed} seconds. Woop!`);
+        }
+        //a random number is generated to select at random from one of the remainingNonRecent questions
+        let randomNumber = Math.floor(Math.random() * remainingWrittenQuestions.length);
+        let selectedCard = remainingWrittenQuestions[randomNumber];
+        setWrittenFlashcard(selectedCard);        
+        //setCurrentQuestion(flashcards[flashcard]);
+        return  
+
+    }
 
     /*
     Ask question initiates a set of questions, it will work through all of the questions in the stated array
@@ -21,7 +56,8 @@ const Presentation = () => {
     function askQuestion(){
         //Creates an iterable array of the keys for the different flashcards in the object
         //correctly answered questions will be successively removed until the array is empty
-        let completeQuestionSet = Object.keys(flashcards);
+        let completeQuestionSet = completeSet;
+        //Object.keys(flashcards);
         //creates an array of the questions yet to be answered correctly
         let remainingQuestions = [];
         //filters the correctlyAnsweredQuestions state array and pushes any questions yet to be correctly answered to 
@@ -35,7 +71,8 @@ const Presentation = () => {
         if (remainingQuestions.length === 0){
             const finishingTime = Date.now();
             const timeElapsed = (finishingTime - startTime)/1000;
-            return setResponse(`Great job! 10 questions answered correctly in ${count} attempts and in ${timeElapsed} seconds. Woop!`);
+            //setResponse(`Great job! 10 questions answered correctly in ${count} attempts and in ${timeElapsed} seconds. Woop!`);
+            return writtenResponse();
         }
         //if the number of recently answered questions is greater than or equal to the number or remaining questions, the question
         //at the front of the recentQuestions queue is assigned
@@ -44,7 +81,7 @@ const Presentation = () => {
             const selectedQuestion = updatedRecentQuestions.shift();
             setRecentQuestions(updatedRecentQuestions);
             setFlashcard(selectedQuestion);
-            return setCurrentQuestion(flashcards[flashcard]);
+            return //setCurrentQuestion(flashcards[flashcard]);
         }
         //if more questions remain than are stored in the recently answered queue, the remaining questions are filtered to remove
         //any of those in the recently answered array, to ensure that the same question is only answered twice in a row if it is the
@@ -56,7 +93,7 @@ const Presentation = () => {
         let randomNumber = Math.floor(Math.random() * remainingNonRecentQuestions.length);
         let selectedCard = remainingNonRecentQuestions[randomNumber];
         setFlashcard(selectedCard);        
-        setCurrentQuestion(flashcards[flashcard]);
+        //setCurrentQuestion(flashcards[flashcard]);
         return         
     }
 
@@ -68,6 +105,10 @@ const Presentation = () => {
         const startingTime = Date.now();
         setStartTime(startingTime);
         return askQuestion();
+    }
+
+    const handleWrittenClick = () => {
+        return writtenResponse();
     }
 
     /*
@@ -96,6 +137,19 @@ const Presentation = () => {
             setResponse(null);            
             return askQuestion();
         }, [500]);
+    }
+
+    const handleEnteredValue = (event) => {
+        return setEnteredValue(event.target.value)
+        //console.log(enteredValue);
+
+    }
+
+    const processResponse = (event) => {
+        //event.preventDefault();
+        setWrittenStage("feedback");
+
+        console.log(event.target.value);
     }
    
     /*
@@ -136,17 +190,28 @@ const Presentation = () => {
         <div>
             <p>Flashcards presentation page</p>
             <button onClick={handleClick}>Click for question</button>
+            <button onClick={handleWrittenClick}>Click for written response question</button>
             <p>Question: {flashcard}</p>
             
             { flashcard ? 
             <MultipleChoiceQuestion 
-            question={flashcards[flashcard]}
-            
+            question={flashcards[flashcard]}            
             handleQuestionClick={handleQuestionClick}
             />              
             : null
             }
             { response ? <p>{response}</p> : null}
+
+            { writtenFlashcard ? 
+            <WrittenFlashcard
+            question={flashcards[writtenFlashcard]}
+            submitResponse={processResponse}
+            enterValue={handleEnteredValue}
+            writtenStage={writtenStage}
+            />
+            : null            
+        
+            }
         </div>
     )
 }

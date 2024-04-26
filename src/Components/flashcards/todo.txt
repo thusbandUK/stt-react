@@ -3,3 +3,6 @@ phase 1
 get flashcards online - selects random 20, multiple choice question first option, or, 
 
 go through, do MCQ, then revert through same questions (different order) doing input and self assess
+
+You need to recycle the code from askQuestion OR no, because.... it'll be endless if they have to repeat the same
+questions twice. For this one you ask each one once and then you give them a mark rating based on their self-assessment
