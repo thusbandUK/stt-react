@@ -7,22 +7,17 @@ const MultipleChoiceQuestion = (props) => {
 
     return (
         <div>
-            <form onSubmit={props.submitAnswer}>
-                <fieldset>
-                    <legend>{question}</legend>
+            <div>                
+                    <h2>{question}</h2>
                     
                    {Object.keys(multipleChoiceResponses).map((MCQ) => (
-                     <div onClick={props.handleQuestionClick} id={MCQ}>
-                        <p>{MCQ}</p>
-                       <input onChange={props.onValueChange} type="radio" id={MCQ} name={name} value={MCQ} />
-                       <label for={MCQ}>{multipleChoiceResponses[MCQ]}</label>
+                     <div onClick={props.handleQuestionClick} id={MCQ} style={{cursor:'pointer'}}>
+                        <p>{MCQ}</p>                        
+                        <p>{multipleChoiceResponses[MCQ]}</p>
                     </div>
                     ))}
-
-                      
-                </fieldset>
-                <button type="submit">Submit</button>
-              </form>
+                
+            </div>
 
         </div>
     )

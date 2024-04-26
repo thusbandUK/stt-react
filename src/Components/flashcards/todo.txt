@@ -1,0 +1,5 @@
+phase 1
+
+get flashcards online - selects random 20, multiple choice question first option, or, 
+
+go through, do MCQ, then revert through same questions (different order) doing input and self assess

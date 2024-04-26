@@ -1,4 +1,4 @@
-export const flashcards2 = {
+export const flashcards = {
     1: {
         definition: "The average mass of an atom relative to one twelfth of the mass of an atom of carbon-12",
         question: "Define relative atomic mass",
@@ -52,7 +52,7 @@ export const flashcards2 = {
     }
 }
 
-export const flashcards = {
+export const flashcards2 = {
     1: {
         definition: "2",
         question: "What is 1+1?",
