@@ -2,35 +2,78 @@ import React, { useState, useEffect } from 'react';
 import { flashcards } from './flashcardEngine';
 import MultipleChoiceQuestion from './multipleChoiceQuestion';
 import WrittenFlashcard from './writtenFlashcard';
+import { useSelector } from 'react-redux';
+import Response from './response';
 
 const Presentation = () => {
 
+    //below two variables assign the number of the question...
     //for MCQ
     const [flashcard, setFlashcard] = useState(null);
     //for written response
     const [writtenFlashcard, setWrittenFlashcard] = useState(null);
-
-    const [response, setResponse] = useState(null);
+    //this sets the feedback response given by the app to the user, once they have completed everything
+    const [response, setResponse] = useState(false);
+    //this stores the question numbers of correctly answered multiple choice questions
     const [correctlyAnsweredQuestions, setCorrectlyAnsweredQuestions] = useState([]);
-    const [correctlyAnsweredWrittenQuestions, setCorrectlyAnsweredWrittenQuestions] = useState([]);
-    const [count, setCount] = useState(1);
+    //this stores the question numbers of questions answered with a written response
+    const [answeredWrittenQuestions, setAnsweredWrittenQuestions] = useState([]);
+    //this counts the number of attempts required by the user to answer every multiple choice question correctly
+    const [count, setCount] = useState(0);
+    //this stores the three most recently attempted questions that the user got wrong (see queueQuestion function below)
     const [recentQuestions, setRecentQuestions] = useState([]);
+    //this stores the time (in milliseconds) at which the user starts
     const [startTime, setStartTime] = useState(null);
+    //this stores the question numbers of all the questions loaded up from the data source
     const [completeSet, setCompleteSet] = useState(Object.keys(flashcards))
+    //OBSOLETE? intended to store the responses to the written response questions
     const [enteredValue, setEnteredValue] = useState(null);
+    //this stores the stage for the written response. It is toggled between "response", when user enters response
+    //and "feedback", when user checks off their correct answers
     const [writtenStage, setWrittenStage] = useState("response");
+    //OBSOLETE? intended to store the user's written response, but now logged in Redux state
+    const [writtenResponse, setWrittenResponse] = useState(null);
     
-    function writtenResponse(){
+    const assessmentData = useSelector(state => state.flashcard);
+
+
+    /*
+    So, the summary should...
+    1) report how long it took
+    2) report how many attempts were needed for x MCQ
+    3) report how many correct answers out of how many possible
+    4) show what they got right and what they got wrong
+    
+    */
+
+    /*This should go through the redox state and count the number of ticks */
+    function harvestAssessmentData(feedbackObject){
+        let questionNumbers = Object.keys(feedbackObject);
+        let maximumMark = 0;
+        let correctAnswers = 0;
+        questionNumbers.forEach((x)=> {
+            feedbackObject[x].checklist.forEach((y) => {
+                maximumMark ++;
+                if (y.checked === true){
+                    correctAnswers ++;
+                }                
+            })            
+        })
+        return {correctAnswers: correctAnswers, maximumMark: maximumMark};
+    }
+
+
+    function askWrittenResponseQuestion(){
         
         let remainingWrittenQuestions = [];
 
         //filters the correctlyAnsweredQuestions state array and pushes any questions yet to be correctly answered to 
         //the remaining questions array
         completeSet.forEach((x)=>{
-            if (!correctlyAnsweredWrittenQuestions.includes(x)){
+            if (!answeredWrittenQuestions.includes(x)){
                 return remainingWrittenQuestions.push(x);
             }
-        })
+        })        
         //if there are no remaining questions, the time to complete the set is computed and delivered as part of a success message
         /*
         [ADD CODE HERE ABOUT THE TOTAL MARKS FOR WRITTEN RESPONSE]
@@ -38,7 +81,9 @@ const Presentation = () => {
         if (remainingWrittenQuestions.length === 0){
             const finishingTime = Date.now();
             const timeElapsed = (finishingTime - startTime)/1000;
-            return setResponse(`Great job! ${completeSet.length} multiple choice questions answered correctly in ${count} attempts and in ${timeElapsed} seconds. Woop!`);
+            setWrittenFlashcard(null);
+            const marksOutOf = harvestAssessmentData(assessmentData);
+            return setResponse(`Great job! ${completeSet.length} multiple choice questions answered correctly in ${count} attempts and in ${timeElapsed} seconds and ${marksOutOf.correctAnswers} marks out of ${marksOutOf.maximumMark} in written response Woop!`);
         }
         //a random number is generated to select at random from one of the remainingNonRecent questions
         let randomNumber = Math.floor(Math.random() * remainingWrittenQuestions.length);
@@ -57,7 +102,6 @@ const Presentation = () => {
         //Creates an iterable array of the keys for the different flashcards in the object
         //correctly answered questions will be successively removed until the array is empty
         let completeQuestionSet = completeSet;
-        //Object.keys(flashcards);
         //creates an array of the questions yet to be answered correctly
         let remainingQuestions = [];
         //filters the correctlyAnsweredQuestions state array and pushes any questions yet to be correctly answered to 
@@ -72,7 +116,8 @@ const Presentation = () => {
             const finishingTime = Date.now();
             const timeElapsed = (finishingTime - startTime)/1000;
             //setResponse(`Great job! 10 questions answered correctly in ${count} attempts and in ${timeElapsed} seconds. Woop!`);
-            return writtenResponse();
+            setFlashcard(null);
+            return askWrittenResponseQuestion();
         }
         //if the number of recently answered questions is greater than or equal to the number or remaining questions, the question
         //at the front of the recentQuestions queue is assigned
@@ -108,7 +153,7 @@ const Presentation = () => {
     }
 
     const handleWrittenClick = () => {
-        return writtenResponse();
+        return askWrittenResponseQuestion();
     }
 
     /*
@@ -140,16 +185,22 @@ const Presentation = () => {
     }
 
     const handleEnteredValue = (event) => {
+        //console.log(event.target.value);
         return setEnteredValue(event.target.value)
-        //console.log(enteredValue);
-
     }
 
-    const processResponse = (event) => {
-        //event.preventDefault();
-        setWrittenStage("feedback");
+    //this removes the question and input box and replaces it with the user's response and an assessment checklist to tick off
+    const processResponse = (event) => {        
+        return setWrittenStage("feedback");        
+    }
 
-        console.log(event.target.value);
+    const handleSubmitChecklist = (event) => {        
+        setWrittenStage("response");
+        let updatedAnsweredQuestionsArray = answeredWrittenQuestions;
+        updatedAnsweredQuestionsArray.push(writtenFlashcard);
+        setAnsweredWrittenQuestions(updatedAnsweredQuestionsArray);
+        
+        return askWrittenResponseQuestion();
     }
    
     /*
@@ -200,14 +251,22 @@ const Presentation = () => {
             />              
             : null
             }
-            { response ? <p>{response}</p> : null}
+            { response ? 
+            <Response 
+              assessmentData={assessmentData}
+              summary={response}
+            />  
+            : null}
 
             { writtenFlashcard ? 
             <WrittenFlashcard
             question={flashcards[writtenFlashcard]}
+            questionId={writtenFlashcard}
             submitResponse={processResponse}
             enterValue={handleEnteredValue}
             writtenStage={writtenStage}
+            writtenResponse={writtenResponse}
+            submitChecklist={handleSubmitChecklist}
             />
             : null            
         

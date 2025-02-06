@@ -28,9 +28,9 @@ export const flashcards = {
         },
         correctMCQ: "C",
         checklist: [
-            /*"average OR mean mass of an atom",
+            "average OR mean mass of a molecule",
             "relative to one twelfth of the mass",
-            "of an atom of carbon-12"*/
+            "of an atom of carbon-12"
         ]
     },
     3: {
@@ -45,9 +45,9 @@ export const flashcards = {
         },
         correctMCQ: "D",
         checklist: [
-            /*"average OR mean mass of an atom",
-            "relative to one twelfth of the mass",
-            "of an atom of carbon-12"*/
+            "the enthalpy change when one mole",
+            "of a compound is formed from its constituent elements in their standard states",
+            "under standard conditions"
         ]
     }
 }

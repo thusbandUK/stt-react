@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import year13HealthCheckReducer from '../features/y13HealthCheck/y13HealthCheckSlice.js';
+import writtenFlashcardSliceReducer from '../Components/flashcards/writtenFlashcardSlice.js';
 import loginReducer from '../Components/login/loginSlice.js';
 //import examBoardReducer from '../features/examBoards/examBoardsSlice.js';
 //import menuReducer from '../features/menu/menuSlice.js';
@@ -17,6 +18,7 @@ export default configureStore({
     reducer: {
         healthCheck: year13HealthCheckReducer,
         login: loginReducer,
+        flashcard: writtenFlashcardSliceReducer
         //menu: menuReducer,
         //rowOfTubes: rowOfTubesReducer,
         //textBoxCreator: textBoxCreatorReducer,
