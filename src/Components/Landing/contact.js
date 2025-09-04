@@ -52,7 +52,7 @@ function Contact(props){
           <label htmlFor="inquiry">Your inquiry. Feel free to include time(s) you would like tutoring</label>
           <textarea className="form-control" id="inquiry" rows="3" name="inquiry"></textarea>
         </div>
-        {/*<div className="w-100" data-netlify-recaptcha="true"></div>*/}
+        <div className="w-100" data-netlify-recaptcha="true"></div>
         <button type="submit" className="btn btn-lg btn-default">Submit</button>
       </form>
      </div>
