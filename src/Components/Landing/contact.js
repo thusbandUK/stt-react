@@ -12,7 +12,7 @@ function Contact(props){
   <div className="row featurette" id="booking-container">     
      <div>
       {/*Removed from dir below: data-netlify-recaptcha="true"  */}
-      <form name="Contact-form1" method="POST">
+      <form name="Contact-form1"  data-netlify-recaptcha="true" method="POST">
       {/*Hidden input below is important to help netlify bots detect in build and the value needs to 
       match the name of the whole form*/}
       <input type="hidden" name="form-name" value="Contact-form1" />
