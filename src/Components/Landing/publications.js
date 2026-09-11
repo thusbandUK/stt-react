@@ -27,7 +27,7 @@ function Publications(props){
     <img className="featurette-image img-fluid center-block" src="images/fudge-portrait.jpg" alt="a market stall piled high with different flavoured fudges"></img>
   </div>
   <div className="col-md-7 col-md-push-5">
-    <h3 className="featurette-heading fs-2"><a target="_blank" rel="noopener noreferrer" href="https://www.acs.org/content/acs/en/education/resources/highschool/chemmatters/past-issues/archive-2014-2015/candymaking.html">The Sweet Science of Candy Making</a></h3>
+    <h3 className="featurette-heading fs-2"><a target="_blank" rel="noopener noreferrer" href="https://www.acs.org/education/chemmatters/articles/the-sweet-science-of-candymaking.html">The Sweet Science of Candy Making</a></h3>
     <p className="lead">Learn how making fudges links to the challenging concepts of crystallisation, intermolecular forces and dynamic equilibrium. Published in <em>ChemMatters</em>, the American Chemical Society.</p>
   </div>
   
