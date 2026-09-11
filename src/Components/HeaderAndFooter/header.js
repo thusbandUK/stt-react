@@ -50,6 +50,7 @@ return (
                   </NavLink>
               
             </li>
+            {/**
             <li className="nav-item">
                   <NavLink 
                     to={"/#demo"}
@@ -58,6 +59,7 @@ return (
                     Demo
                   </NavLink>              
             </li>
+             */}
             <li className="nav-item">
                   <NavLink 
                     to={"/#publications"}

@@ -43,14 +43,16 @@ return (
     <div>
     <Helmet>
                 { /* Standard metadata tags */ }                
-                  <title>Science Tutor Tom</title>
-                  <meta name="description" content="Tom Husband is an online tutor of A-level chemistry and GCSE science." />                  
+                  <title>Science Tutor Tamsin</title>
+                  <meta name="description" content="Tamsin Husband is an online tutor of A-level chemistry and GCSE science." />                  
                 { /* End standard metadata tags */ }
                 { /* Facebook tags */ }
-                <meta property="og:title" content="Tom Husband, science tutor" />
-                <meta property="og:url" content="https://sciencetutortom.com" />
-                <meta property="og:description" content="Tom Husband is an online tutor of A-level chemistry and GCSE science" />
-                <meta property="og:image" content="https://sciencetutortom.com/images/Fb-intro-post-sep-2023.png" />
+                <meta property="og:title" content="Tamsin Husband, science tutor" />
+                <meta property="og:url" content="https://sciencetutortamsin.co.uk" />
+                <meta property="og:description" content="Tamsin Husband is an online tutor of A-level chemistry and GCSE science" />
+                {/**
+                <meta property="og:image" content="https://sciencetutortamsin.co.uk/images/Fb-intro-post-sep-2023.png" />
+                 */}
                 <meta property="og:type" content="website" />
                 <meta property="og:locale" content="en_GB" />
                 <meta property="fb:page_id" content="114457788407704" />
