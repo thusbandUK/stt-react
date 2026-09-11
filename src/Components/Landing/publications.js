@@ -8,6 +8,7 @@ function Publications(props){
 
 <div className="section" id="publications">
   <h2 className="fs-1">Publications</h2>
+  <p className="lead">(Under previous name)</p>
   <hr className="featurette-divider"></hr>
 <div className="row featurette">
   <div className="col-md-7">

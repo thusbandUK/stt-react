@@ -26,7 +26,7 @@ const Privacy = (props) => {
       
   </p>
   <div id="address">
-      <p>Tom Husband</p>
+      <p>Tamsin Husband</p>
       <p>thsciencetutor@gmail.com </p>
       
   </div>
@@ -462,7 +462,7 @@ const Privacy = (props) => {
   </p>
   <p>
       To exercise all relevant rights, queries or complaints in relation to this policy or any other data 
-      protection matter between you and myself, Tom Husband, please in the first instance contact me on 
+      protection matter between you and myself, Tamsin Husband, please in the first instance contact me on 
       thsciencetutor@gmail.com
   </p>
   <p>

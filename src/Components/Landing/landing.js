@@ -84,9 +84,9 @@ return (
     />
 
     {/*demo video*/}
-
+{/**
     <Demo />
-
+ */}
     {/*Publications*/}
 
     <Publications />
