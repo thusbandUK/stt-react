@@ -37,7 +37,7 @@ function Publications(props){
 
 <div className="row featurette">
   <div className="col-md-7">
-    <h3 className="featurette-heading fs-2"><a target="_blank" rel="noopener noreferrer" href="https://pubs.rsc.org/en/content/ebook/978-1-78262-134-8">The Chemistry of Human Nature</a></h3>
+    <h3 className="featurette-heading fs-2"><a target="_blank" rel="noopener noreferrer" href="https://books.rsc.org/books/monograph/560/The-Chemistry-of-Human-Nature">The Chemistry of Human Nature</a></h3>
     <p className="lead">Explore the biochemical processes that motivate us to eat, fall in love and behave in the unique ways we do in this popular science book published by the RSC.</p>
   </div>
   <div className="col-md-5">
